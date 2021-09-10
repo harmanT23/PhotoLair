@@ -1,0 +1,14 @@
+import uuid
+
+def upload_image_path(instance, filename):
+    """
+    Sets the image upload path as the subdirectory
+    defined by the associated users uuid. Furthermore, the filename 
+    is replaced with the given image name.
+    """
+    ext = filename.split('.')[-1]
+    n_filename = f'{instance.image_name}.' + ext
+        
+    return (
+        f'images/{instance.user.uuid}/{n_filename}'
+    )
