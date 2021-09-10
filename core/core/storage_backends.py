@@ -11,8 +11,9 @@ class StaticStorage(S3Boto3Storage):
 
 class PublicMediaStorage(S3Boto3Storage):
     """
-    Defines settings for storage of media on S3
+    Defines settings for storage of public media on S3
     """
     location = 'media'
     default_acl = 'public-read'
     file_overwrite = False
+    

@@ -3,10 +3,12 @@ import core.settings as app_settings
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils.translation import gettext_lazy as _
+from django.core.files.storage import get_storage_class
 from .managers import CustomUserManager
 from .image_handler import upload_image_path
 from profanity.validators import validate_is_profane
 
+django_storage = get_storage_class()
 
 class User(AbstractUser):
     """
@@ -24,7 +26,7 @@ class User(AbstractUser):
         _('Credits'),
         blank=True,
         default=app_settings.DEFAULT_CREDITS,
-        help_text=_('Default number of credits each user starts with'),
+        help_text=_('Account balance of credits available to the user'),
     )
 
     created_at = models.DateTimeField(
@@ -75,14 +77,14 @@ class Image(models.Model):
         max_length=100,
         validators=[validate_is_profane],
         blank=False,
-        help_text=_('Name of image.'),
+        help_text=_('Name of image specified by user.'),
     )
 
     image = models.ImageField(
         _('Image'),
         blank=False,
         upload_to=upload_image_path, 
-        help_text=_('URL to image file/'),
+        help_text=_('URL to image file'),
     )
 
     inventory = models.PositiveBigIntegerField(
@@ -119,3 +121,9 @@ class Image(models.Model):
 
     def __str__(self):
         return self.image_name
+
+    def delete_image(self):
+        """
+        Deletes image from directory
+        """
+        django_storage.delete(self.image.name)

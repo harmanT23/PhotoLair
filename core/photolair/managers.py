@@ -1,4 +1,4 @@
-from django.utils import timezone
+from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.base_user import BaseUserManager
 from django.utils.translation import ugettext_lazy as _
 
@@ -18,13 +18,14 @@ class CustomUserManager(BaseUserManager):
         
         if username is None:
             raise ValueError(_('User must have username'))
-            
+        
+        username = AbstractUser.normalize_username(username)
         user = self.model(username=username, **extra_fields)
         user.set_password(password)
         user.save()
         return user
 
-    def create_superuser(self, email, password, **extra_fields):
+    def create_superuser(self, username, password, **extra_fields):
         """
         Creates a super user by setting staff and superuser flags to true.
         """
@@ -32,8 +33,8 @@ class CustomUserManager(BaseUserManager):
         extra_fields.setdefault('is_superuser', True)
 
         if extra_fields.get('is_staff') is not True:
-            raise ValueError(_('Superuser must have is_staff=True'))
+            raise ValueError('Superuser must have is_staff=True.')
         if extra_fields.get('is_superuser') is not True:
-            raise ValueError(_('Superuser must have is_superuser=True'))
+            raise ValueError('Superuser must have is_superuser=True.')
 
-        return self.create_user(email, password, **extra_fields)
+        return self.create_user(username, password, **extra_fields)

@@ -1,5 +1,3 @@
-import uuid
-
 def upload_image_path(instance, filename):
     """
     Sets the image upload path as the subdirectory
@@ -12,3 +10,4 @@ def upload_image_path(instance, filename):
     return (
         f'images/{instance.user.uuid}/{n_filename}'
     )
+    
