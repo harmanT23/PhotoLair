@@ -1,17 +1,22 @@
 from django.contrib.auth import get_user_model
+from django.shortcuts import get_object_or_404
 from rest_framework import status, generics
 from rest_framework.views import APIView
 from photolair.models import Image
+from rest_framework.response import Response
 from rest_framework.permissions import (
   AllowAny,
   IsAuthenticated,
 )
 from rest_framework.permissions import SAFE_METHODS
-from .permissions import IsUserOwnerOnly
+from .permissions import IsUserOwnerOnly, IsImageOwnerOnly
 from .serializers import (
   RegisterUserSerializer,
   UserSerializer,
   ImageSerializer
+)
+from .services import (
+    buy_image,
 )
 
 
@@ -39,12 +44,16 @@ class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = UserSerializer
     permission_classes = [IsUserOwnerOnly,]
 
+    def get_object(self, queryset=None, **kwargs):
+        user_id = self.kwargs.get('user_id')
+        return get_object_or_404(User, id=user_id)
+
 
 class ImageListView(generics.ListCreateAPIView):
     """
     Image List Endpoint
     - GET: Retrieve a list of images
-    - POST: Uploads an image plus its accompanying information
+    - POST: Uploads an image and its accompanying information
     """
 
     queryset = Image.objects.all()
@@ -65,8 +74,46 @@ class ImageListView(generics.ListCreateAPIView):
 class ImageDetailView(APIView):
     """
     Image Detail Endpoint
-    - GET: Download image for request user and transfer funds
-    - PUT/PATCH: Update image details for image owned by request user
+    - GET: Download image by id for request user and transfer funds
+    - PATCH: Update image details for image owned by request user
     - DELETE: Delete the image owned by request user
     """
-    pass
+    
+    def get_permissions(self):
+        """
+        For the endpoints exposted by this view, any user can download an image
+        but only users that own the associated image can edit/delete it
+        """
+        if self.request.method == SAFE_METHODS:
+            self.permission_classes = [IsAuthenticated,]
+        else:
+            self.permission_classes = [IsImageOwnerOnly,] 
+    
+    def get(self, request, image_id, format=None):
+        """
+        Get the image specified by image_id for the request user,
+        perform validation checks and transaction.
+        """
+        image_url = buy_image(request.user, image_id)
+        return Response(image_url)
+
+    def patch(self, request, image_id, format=None):
+        """
+        Update details of an image such as title, price and inventory
+        """
+        image = get_object_or_404(Image, pk=image_id)
+
+        serializer = ImageSerializer(image, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, image_id, format=None):
+        """
+        Delete image specified by user
+        """
+        image = get_object_or_404(Image, pk=image_id)
+        image.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+        
