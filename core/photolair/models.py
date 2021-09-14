@@ -3,12 +3,10 @@ import core.settings as app_settings
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils.translation import gettext_lazy as _
-from django.core.files.storage import get_storage_class
 from .managers import CustomUserManager
 from .image_handler import upload_image_path
 from profanity.validators import validate_is_profane
 
-django_storage = get_storage_class()
 
 class User(AbstractUser):
     """
@@ -88,7 +86,7 @@ class Image(models.Model):
     )
 
     inventory = models.PositiveBigIntegerField(
-        _('Credits'),
+        _('inventory'),
         blank=False,
         default=0,
         help_text=_('Defines number of available image downloads.'),
@@ -121,9 +119,3 @@ class Image(models.Model):
 
     def __str__(self):
         return self.image_name
-
-    def delete_image(self):
-        """
-        Deletes image from directory
-        """
-        django_storage.delete(self.image.name)

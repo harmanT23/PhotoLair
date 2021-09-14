@@ -1,0 +1,337 @@
+openapi: 3.0.2
+info:
+  title: ''
+  version: ''
+paths:
+  /api/users/{user_id}:
+    get:
+      operationId: retrieveUser
+      description: 'User Detail Endpoint
+
+        - GET: Get a user by id
+
+        - PUT/PATCH: Update a user by id
+
+        - DELETE: Delete a user'
+      parameters:
+      - name: user_id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+      tags:
+      - api
+    put:
+      operationId: updateUser
+      description: 'User Detail Endpoint
+
+        - GET: Get a user by id
+
+        - PUT/PATCH: Update a user by id
+
+        - DELETE: Delete a user'
+      parameters:
+      - name: user_id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateUser
+      description: 'User Detail Endpoint
+
+        - GET: Get a user by id
+
+        - PUT/PATCH: Update a user by id
+
+        - DELETE: Delete a user'
+      parameters:
+      - name: user_id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+      tags:
+      - api
+    delete:
+      operationId: destroyUser
+      description: 'User Detail Endpoint
+
+        - GET: Get a user by id
+
+        - PUT/PATCH: Update a user by id
+
+        - DELETE: Delete a user'
+      parameters:
+      - name: user_id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+  /api/images/:
+    get:
+      operationId: listImages
+      description: 'Image List Endpoint
+
+        - GET: Retrieve a list of images
+
+        - POST: Uploads an image and its accompanying information'
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Image'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createImage
+      description: 'Image List Endpoint
+
+        - GET: Retrieve a list of images
+
+        - POST: Uploads an image and its accompanying information'
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Image'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Image'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Image'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Image'
+          description: ''
+      tags:
+      - api
+  /api/images/{image_id}:
+    get:
+      operationId: retrieveImageDetail
+      description: 'Get the image specified by image_id for the request user,
+
+        perform validation checks and transaction.'
+      parameters:
+      - name: image_id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateImageDetail
+      description: Update details of an image such as title, price and inventory
+      parameters:
+      - name: image_id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+          application/x-www-form-urlencoded:
+            schema: {}
+          multipart/form-data:
+            schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - api
+    delete:
+      operationId: destroyImageDetail
+      description: Delete image specified by user
+      parameters:
+      - name: image_id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+  /api/users/:
+    post:
+      operationId: createUser
+      description: 'User Create Endpoint
+
+        - POST: Registers a new user'
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterUser'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RegisterUser'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/RegisterUser'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegisterUser'
+          description: ''
+      tags:
+      - api
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+          description: User ID is a uuid.
+        credits:
+          type: integer
+          readOnly: true
+          description: Account balance of credits available to the user
+        is_staff:
+          type: boolean
+          description: Designates whether the user can log into this admin site.
+    Image:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+          description: Image ID is a uuid.
+        user:
+          type: string
+          description: Image belongs to associated User.
+        image_name:
+          type: string
+          description: Name of image specified by user.
+          maxLength: 100
+        image:
+          type: string
+          format: binary
+          description: URL to image file
+        inventory:
+          type: integer
+          maximum: 9223372036854775807
+          format: int64
+          description: Defines number of available image downloads.
+          minimum: 0
+        price:
+          type: integer
+          maximum: 9223372036854775807
+          format: int64
+          description: Defines price (in credits) for each image download.
+          minimum: 0
+      required:
+      - user
+      - image_name
+      - image
+    RegisterUser:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+          description: User ID is a uuid.
+        username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+\z
+          maxLength: 150
+        credits:
+          type: integer
+          readOnly: true
+          description: Account balance of credits available to the user
+        password:
+          type: string
+          writeOnly: true
+      required:
+      - username
+      - password

@@ -8,6 +8,6 @@ def upload_image_path(instance, filename):
     n_filename = f'{instance.image_name}.' + ext
         
     return (
-        f'images/{instance.user.uuid}/{n_filename}'
+        f'images/{instance.user.id}/{n_filename}'
     )
     

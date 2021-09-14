@@ -2,6 +2,9 @@ from photolair.models import Image
 from django.db.models import F
 from django.shortcuts import get_object_or_404
 from rest_framework.exceptions import APIException
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 def _remove_sold_out_image(image):
   """
@@ -24,13 +27,17 @@ def buy_image(buy_user, image_id):
         
     if buy_user.credits < image.price:
         raise APIException('User does not have enough credits.')
+
+    sell_user = User.objects.get(pk=image.user.id)
     
     # Use F expression to avoid race conditions and work on DB inst directly
     buy_user.credits = F('credits') - image.price
     buy_user.save()
 
-    image.user.credits = F('credits') + image.price
+    sell_user.credits = F('credits') + image.price
+    sell_user.save()
+
     image.inventory = F('inventory') - 1
     image.save()
 
-    return image.url    
+    return image.image.url    

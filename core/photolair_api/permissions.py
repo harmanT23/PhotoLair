@@ -1,7 +1,7 @@
 from rest_framework.permissions import BasePermission
 
 
-class IsUserOwnerOnly(BasePermission):
+class IsAuthenticatedAndOwner(BasePermission):
     '''
     An authenticated user can only view and edit their own profile
     '''
@@ -14,7 +14,7 @@ class IsUserOwnerOnly(BasePermission):
         """
         Only authenticated users have permission to view a user profile
         """
-        if request.user.is_authenticated:
+        if request.user and request.user.is_authenticated:
             return True
         return False
 
@@ -25,7 +25,7 @@ class IsUserOwnerOnly(BasePermission):
         return request.user.id == obj.id
 
 
-class IsImageOwnerOnly(BasePermission):
+class IsAuthenticatedAndImageOwner(BasePermission):
     '''
     An authenticated user can only view or edit their own image
     '''
@@ -34,7 +34,7 @@ class IsImageOwnerOnly(BasePermission):
         """
         Only authenticated users have permission to view a specific image
         """
-        if request.user.is_authenticated:
+        if request.user and request.user.is_authenticated:
             return True
         return False
     

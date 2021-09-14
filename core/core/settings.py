@@ -139,7 +139,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-AWS_S3 = os.getenv('USE_S3') == 'TRUE'
+AWS_S3 = os.getenv('AWS_S3') == 'TRUE'
 
 if AWS_S3:
     # aws settings
@@ -178,6 +178,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.BasicAuthentication',
     ],
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.openapi.AutoSchema',
 }
 
 # Default credits for each user

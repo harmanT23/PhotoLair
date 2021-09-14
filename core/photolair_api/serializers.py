@@ -7,18 +7,18 @@ User = get_user_model()
 
 class ImageSerializer(serializers.ModelSerializer):
     """
-    Serializer for image model for uploading/downloading images, updating image 
-    info and handling transcations 
+    Serializer for image model used for uploading/downloading images 
+    and handling transcations 
     """
     class Meta:
         model = Image
         fields = (
-          'id',
-          'user',
-          'image_name',
-          'image',
-          'inventory',
-          'price',
+            'id',
+            'user',
+            'image_name',
+            'image',
+            'inventory',
+            'price',
         )
         read_only_fields = ('id',)
     
@@ -28,7 +28,40 @@ class ImageSerializer(serializers.ModelSerializer):
         """
         response = super().to_representation(instance)
         response['user'] = { 
-            'id': instance.user.id, 
+            'username': instance.user.username,
+        }
+        return response
+
+
+class ImageUpdateSerialier(serializers.ModelSerializer):
+    """
+    Serializer for image model used to update image and image details 
+    """
+    class Meta:
+        model = Image
+        fields = (
+            'id',
+            'user',
+            'image_name',
+            'image',
+            'inventory',
+            'price',
+        )
+        read_only_fields = ('id','user')
+        extra_kwargs = {
+            'image_name': {'required': False},
+            'image': {'required': False},
+            'inventory': {'required': False},
+            'price': {'required': False},
+        }
+    
+    def to_representation(self, instance):
+        """
+        Return only id of associated user
+        """
+        response = super().to_representation(instance)
+        response['user'] = {
+            'username': instance.user.username,
         }
         return response
 
@@ -42,11 +75,12 @@ class RegisterUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = (
-          'id',
-          'username', 
-          'password'
+            'id',
+            'username',
+            'credits', 
+            'password'
         )
-        read_only_fields = ('id',)
+        read_only_fields = ('id', 'credits')
     
     def create(self, validated_data):
         """
@@ -70,8 +104,8 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = (
-          'id',
-          'credits',
-          'is_staff',
+            'id',
+            'credits',
+            'is_staff',
         )
-        read_only_fields = ('id',)
+        read_only_fields = ('id', 'credits')
