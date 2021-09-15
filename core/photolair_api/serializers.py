@@ -105,6 +105,7 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = (
             'id',
+            'username',
             'credits',
             'is_staff',
         )
