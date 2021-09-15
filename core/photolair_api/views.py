@@ -56,9 +56,27 @@ class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
         user_id = self.kwargs.get('user_id')
         if self.request.user.id != user_id:
             raise APIException(
-                'Authenticated user cannot view or edit other users profiles.'
+                'Authenticated user cannot view or edit other users profiles'
             )
         return get_object_or_404(User, id=user_id)
+
+
+class MeView(generics.RetrieveUpdateDestroyAPIView):
+    """
+    Me View Endpoint
+    - GET: Get the authenticated user's profile details
+    - PATCH: Update the authenticated user's profile
+    - DELETE: Delete the authenticated user's profie
+    """
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [IsAuthenticatedAndOwner,]
+
+    def get_object(self, queryset=None, **kwargs):
+        """
+        Get the user object of the authenticated user
+        """
+        return self.request.user
 
 
 class ImageListView(generics.ListCreateAPIView):

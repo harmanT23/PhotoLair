@@ -8,6 +8,10 @@ import Register from './Authorization/register'
 import Login from './Authorization/login';
 
 class App extends Component {
+  componentDidMount() {
+    this.props.fetchUser();
+  }
+  
   render() {
     return (
       <BrowserRouter>

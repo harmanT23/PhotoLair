@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { withRouter } from 'react-router-dom';
+import axiosInstance from '../../api/axiosInstance';
 
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -76,7 +77,7 @@ class Register extends Component {
   };
 
   handleSubmit = () => {
-    //Regiser then login the user.
+    //Register then login the user.
     this.props.registerUser({
       username: this.state.username,
       password: this.state.password
@@ -87,15 +88,18 @@ class Register extends Component {
           password: this.state.password
         }).then((loginResult) => {
           if (loginResult) {
+            localStorage.setItem('access_token', loginResult.access);
+            localStorage.setItem('refresh_token', loginResult.refresh);
+            axiosInstance.defaults.headers['Authorization'] = 
+            'JWT ' + localStorage.getItem('access_token');
             this.props.history.push({
               pathname: '/'
             });
           }
         });
-      }
-      else {
+      } else {
         this.setState({
-          error: result ? '' : 'This username is already taken.'
+          error: 'This username is already taken.'
         });
       }
     });
@@ -151,6 +155,7 @@ class Register extends Component {
                   id='password'
                   label='password'
                   name='password'
+                  type={'password'}
                   value={this.state.password}
                   onChange={this.handleChange}
                   errorMessages={[

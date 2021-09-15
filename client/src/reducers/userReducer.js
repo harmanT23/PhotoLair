@@ -2,6 +2,7 @@ import {
   REGISTER,
   LOGIN,
   LOGOUT,
+  FETCH_USER,
 }  from '../actions/types';
 
 const initialState = {};
@@ -14,6 +15,8 @@ export default function (state=initialState, action) {
       return action.payload;
     case LOGOUT:
       return false;
+    case FETCH_USER:
+      return action.payload || false;
     default:
       return state;
   }

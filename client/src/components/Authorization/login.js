@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { withRouter, Link } from 'react-router-dom';
+import axiosInstance from '../../api/axiosInstance';
 
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -38,13 +39,14 @@ const useStyles = (theme) => ({
   },
 });
 
-
 class Login extends Component {
   state = {
     username: '',
     password: '',
     error: '',
   }
+
+  
 
   handleChange = (e) => {
     this.setState({
@@ -57,43 +59,26 @@ class Login extends Component {
   handleSubmit = () => {
     this.props.loginUser({
       username: this.state.username,
-      password: this.state.pssword
+      password: this.state.password
     }).then((result) => {
       if(result) {
+        localStorage.setItem('access_token', result.access);
+        localStorage.setItem('refresh_token', result.refresh);
+        axiosInstance.defaults.headers['Authorization'] = 
+          'JWT ' + localStorage.getItem('access_token');
         this.props.history.push({
           pathname: '/',
         });
-      }
-      else {
+      } else {
         this.setState({
-          error: result ? '' : 'Invalid username or password entered'
-        })
+          error: 'Invalid username or password entered'
+        });
       }
     }).catch((err) => {
       alert(err.response.data.msg)
     });
   };
   
-  getCopyright() {
-    return (
-      <Typography 
-        variant="body2" 
-        color="text.secondary" 
-        align="center"
-      >
-        {'Copyright © '}
-        <Link 
-          color="inherit" 
-          href="/"
-        >
-          PhotoLair
-        </Link>{' '}
-        {new Date().getFullYear()}
-        {'.'}
-      </Typography>
-    );
-  };
-
   render() {
     const { classes } = this.props;
     return (
@@ -139,8 +124,9 @@ class Login extends Component {
                   id='password'
                   label='password'
                   name='password'
+                  type='password'
                   autoFocus
-                  value={this.state.username}
+                  value={this.state.password}
                   onChange={this.handleChange}
                   validators={['required']}
                   errorMessages={['Please enter a password']}

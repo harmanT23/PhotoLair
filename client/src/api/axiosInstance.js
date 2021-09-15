@@ -7,7 +7,7 @@ const axiosInstance = axios.create({
   baseURL: baseURL,
   timeout: 5000,
   headers: {
-    Authorization: localStorage.getItem('access_token')
+    Authorization: localStorage.getItem('access_token') !== 'undefined'
                       ? 'JWT ' + localStorage.getItem('access_token')
                       : null,
     'Content-Type': 'application/json',
@@ -19,6 +19,7 @@ axiosInstance.interceptors.response.use(
 	(response) => {
 		return response;
 	},
+
 	async function (error) {
 		const originalRequest = error.config;
 
@@ -48,13 +49,9 @@ axiosInstance.interceptors.response.use(
 			error.response.statusText === 'Unauthorized'
 		) {
 			const refreshToken = localStorage.getItem('refresh_token');
-
-			if (refreshToken) { // if token exists parse it into parts
+			if (refreshToken !== 'undefined') {
 				const tokenParts = JSON.parse(atob(refreshToken.split('.')[1]));
-
-				// exp date in token is expressed in seconds
 				const now = Math.ceil(Date.now() / 1000);
-
 				if (tokenParts.exp > now) {
 					return axiosInstance
 						.post('/token/refresh/', { refresh: refreshToken })
@@ -82,8 +79,6 @@ axiosInstance.interceptors.response.use(
 				window.location.href = '/login/';
 			}
 		}
-
-		// specific error handling done elsewhere
 		return Promise.reject(error);
 	}
 );

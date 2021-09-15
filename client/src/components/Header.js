@@ -1,6 +1,7 @@
 import React, { Fragment, Component } from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import axiosInstance from '../api/axiosInstance';
 import SizeMe from 'react-sizeme'
 import * as actions from '../actions';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
@@ -49,7 +50,7 @@ const useStyles = (theme) => ({
 
 class Header extends Component {
   state = {
-    dropDownMenu: null,
+    dropDownMenuElement: null,
   };
 
   handleClick = (e) => {
@@ -62,7 +63,12 @@ class Header extends Component {
 
   handleLogout = () => {
     this.handleClose();
-    this.props.logoutUser();
+    this.props.logoutUser().then(() =>{
+      localStorage.removeItem('access_token');
+      localStorage.removeItem('refresh_token');
+      axiosInstance.defaults.headers['Authorization'] = null;
+    });
+
     this.props.history.push({
       pathname: '/',
     });
@@ -105,7 +111,6 @@ class Header extends Component {
       If user is authenticated, we display a menu bar with their account
       balance, icon button with sign-out bottom as drop down.
     */
-    console.log(userData)
     if(userData) {
       return (
         <Fragment>
@@ -136,12 +141,14 @@ class Header extends Component {
               style={{ marginRight: '6px' }}
               color='inherit'
             />
-            <Typography
-              variant='h6'
-              className={classes.title}
-            >
-              {`${userData.username}`}
-            </Typography>
+            {width >= 500 && (
+              <Typography
+                variant='h6'
+                className={classes.title}
+              >
+                {`${userData.username}`}
+              </Typography>
+            )}
           </Button>
           {this.menuDropdown()}
         </Fragment>
