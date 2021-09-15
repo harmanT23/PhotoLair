@@ -5,6 +5,7 @@ from rest_framework.views import APIView
 from rest_framework.exceptions import APIException
 from photolair.models import Image
 from rest_framework.response import Response
+from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.permissions import (
   AllowAny,
   IsAuthenticated,
@@ -130,4 +131,18 @@ class ImageDetailView(APIView):
         image = get_object_or_404(Image, pk=image_id)
         image.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-        
+
+class BlackListTokenView(APIView):
+    """
+    Used to blacklist refresh tokens after a user logs out.
+    """
+    permission_classes = [AllowAny,]
+
+    def post(self, request):
+        try:
+            refresh_token = request.data['refresh_token']
+            token = RefreshToken(refresh_token)
+            token.blacklist()
+            return Response(status=status.HTTP_205_RESET_CONTENT)
+        except:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
