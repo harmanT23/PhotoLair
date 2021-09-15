@@ -1,25 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { withRouter } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { withstyles } from '@mui/material/styles';
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Grid from '@material-ui/core/Grid';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
+import { withStyles } from '@material-ui/core/styles';
 import { 
   ValidatorForm, 
   TextValidator 
 } from 'react-material-ui-form-validator';
+
+import * as actions from '../../actions';
 
 const useStyles = (theme) => ({
   paper: {
@@ -99,41 +96,79 @@ class Login extends Component {
 
   render() {
     const { classes } = this.props;
-
-   
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography
-          component='h1'
-          variant='h5'
-        >
-          Login
-        </Typography>
-        <ValidatorForm
-          onSubmit={this.handleSubmit}
-          className={classes.form}
-        >
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <TextValidator
-                variant='outlined'
-                margin='normal'
-              >
-
-              </TextValidator>
+    return (
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography
+            component='h1'
+            variant='h5'
+          >
+            Login
+          </Typography>
+          <ValidatorForm
+            onSubmit={this.handleSubmit}
+            className={classes.form}
+          >
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TextValidator
+                  variant='outlined'
+                  margin='normal'
+                  fullWidth
+                  id='username'
+                  label='username'
+                  name='username'
+                  autoFocus
+                  value={this.state.username}
+                  onChange={this.handleChange}
+                  validators={['required']}
+                  errorMessages={['Please enter a username']}
+                  error={this.state.error ? true : false}
+                  helperText={this.state.error}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextValidator
+                  variant='outlined'
+                  margin='normal'
+                  fullWidth
+                  id='password'
+                  label='password'
+                  name='password'
+                  autoFocus
+                  value={this.state.username}
+                  onChange={this.handleChange}
+                  validators={['required']}
+                  errorMessages={['Please enter a password']}
+                  error={this.state.error ? true : false}
+                  helperText={this.state.error}
+                />
+              </Grid>
             </Grid>
-          </Grid>
-
-        </ValidatorForm>
-      </div>
-    </Container>
-
-  };
-
+            <Button
+              type='submit'
+              fullWidth
+              variant='contained'
+              color='primary'
+              className={classes.submit}
+            >
+              Login
+            </Button>
+            <Link
+              to='/register'
+              variant='body2'
+            >
+              Don't have an account? Sign Up
+            </Link>
+          </ValidatorForm>
+        </div>
+      </Container>
+    );
+  }
 }
 
 export default compose(

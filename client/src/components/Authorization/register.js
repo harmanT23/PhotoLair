@@ -121,7 +121,7 @@ class Register extends Component {
               component="h1" 
               variant="h5"
           >
-              Sign Up
+              Register
           </Typography>
           <ValidatorForm onSubmit={this.handleSubmit} className={classes.form}>
             <Grid container spacing={2}>
