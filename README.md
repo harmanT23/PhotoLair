@@ -19,8 +19,8 @@ To be added...
 
 ## Built With
 ### Stack Used
-- [React](https://reactjs.org/) - Framework used to design the front-end UI
-- [Django](https://www.djangoproject.com/) - Back-end Web Application Framework
+- [React](https://reactjs.org/) - Framework used to design the frontend UI
+- [Django](https://www.djangoproject.com/) - Backend Web Application Framework
 - [PostgreSQL](https://www.postgresql.org/) - Databased used to store data
 - [Node.js](https://nodejs.org/en/) - JavaScript run-time environment 
 
@@ -44,7 +44,7 @@ To run this application you'll need:
    > -  `brew services start postgresql` to start the PostgreSQL service (stop it with `brew services stop PostgreSQL`)
 
 ### Getting Started
-In order to run the back-end and/or the front-end locally follow the instructions below.
+In order to run the backend and/or the frontend locally follow the instructions below.
 
 Begin by cloning the repository
 ```
@@ -88,19 +88,19 @@ Start the backend
 python manage.py runserver
 ```
 
-#### React Front-End
+#### React Frontend
 
 Change directory to client directory from project directory
 ```
 cd client
 ```
 
-Install all front-end dependencies
+Install all frontend dependencies
 ```
 npm install
 ```
 
-Start front-end
+Start frontend
 ```
 npm start
 ```
