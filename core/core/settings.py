@@ -204,4 +204,4 @@ SIMPLE_JWT = {
 
 
 # Default credits for each user
-DEFAULT_CREDITS = 10
+DEFAULT_CREDITS = 50

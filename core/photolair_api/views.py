@@ -1,3 +1,6 @@
+import requests
+from tempfile import NamedTemporaryFile
+from django.http import FileResponse
 from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404
 from rest_framework import status, generics
@@ -109,7 +112,6 @@ class ImageDetailView(APIView):
     - PATCH: Update image details for image owned by request user
     - DELETE: Delete the image owned by request user
     """
-    serializer_class = ImageSerializer
 
     def get_permissions(self):
         """
@@ -122,13 +124,34 @@ class ImageDetailView(APIView):
             self.permission_classes = [IsAuthenticatedAndImageOwner] 
         return super(ImageDetailView, self).get_permissions()
     
+    def _download_image_send_blob(self, file_url):
+        """
+        Downloads an image from given url, save it to a temp file and finally
+        send the image as a blob in the http response.
+        """
+
+        tempFile = NamedTemporaryFile(mode='w+b', suffix='jpeg')
+        res = requests.get(file_url, stream=True)
+
+        if not res.ok:
+            return Response(status=res.status_code)
+        
+        for block in res.iter_content(chunk_size=1024):
+            if not block:
+                break
+            tempFile.write(block)
+        tempFile.seek(0,0)
+        return FileResponse(tempFile, as_attachment=True)
+    
     def get(self, request, image_id, format=None):
         """
         Get the image specified by image_id for the request user,
-        perform validation checks and transaction.
+        perform validation checks and transaction. The image itself is
+        returned as a blob. 
         """
         image_url = buy_image(request.user, image_id)
-        return Response(image_url)
+
+        return self._download_image_send_blob(image_url)
 
     def patch(self, request, image_id, format=None):
         """
@@ -149,6 +172,7 @@ class ImageDetailView(APIView):
         image = get_object_or_404(Image, pk=image_id)
         image.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
 
 class BlackListTokenView(APIView):
     """

@@ -1,15 +1,15 @@
 import React, { Fragment, Component } from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import { withRouter, Link } from 'react-router-dom';
 import axiosInstance from '../api/axiosInstance';
 import SizeMe from 'react-sizeme'
-import * as actions from '../actions';
+
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import AppBar from '@material-ui/core/AppBar'
 import Button from '@material-ui/core/Button';
 import CameraIcon from '@material-ui/icons/Camera';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Link from "@material-ui/core/Link";
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
@@ -17,6 +17,9 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
+
+import * as actions from '../actions';
+import { checkEmpty }  from '../utilities/checkEmptyObj';
 
 const useStyles = (theme) => ({
   root: {
@@ -46,7 +49,6 @@ const useStyles = (theme) => ({
      },
   },
 });
-
 
 class Header extends Component {
   state = {
@@ -111,7 +113,7 @@ class Header extends Component {
       If user is authenticated, we display a menu bar with their account
       balance, icon button with sign-out bottom as drop down.
     */
-    if(userData) {
+    if(!checkEmpty(userData)) {
       return (
         <Fragment>
           <Tooltip 
@@ -126,8 +128,8 @@ class Header extends Component {
                 variant='h6'
                 className={classes.title}
               >
-                <MonetizationOnIcon />
-                {`${userData.credits}`}
+                <MonetizationOnIcon /> 
+                <span> {`${userData.credits}`} </span>
               </Typography>
             </Button>
           </Tooltip>
@@ -159,7 +161,7 @@ class Header extends Component {
   }
 
   getLoginButton(userData, classes) {
-    if (userData === false) {
+    if (checkEmpty(userData)) {
       return (
         <Link 
           to='/login' 
@@ -244,6 +246,7 @@ function mapStateToProps({ userData }) {
 
 export default compose(
   SizeMe(), 
-  withStyles(useStyles), 
+  withStyles(useStyles),
+  withRouter,  
   connect(mapStateToProps, actions)
 )(Header);

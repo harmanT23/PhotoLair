@@ -100,7 +100,6 @@ class UserSerializer(serializers.ModelSerializer):
     Serializer for user model provides user details about user such as id,
     and account balance.
     """
-
     class Meta:
         model = User
         fields = (

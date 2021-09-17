@@ -69,7 +69,7 @@ class Image(models.Model):
         on_delete=models.CASCADE, 
         help_text=_('Image belongs to associated User.'), 
     )
-
+    
     image_name = models.CharField(
         _('Image Name'),
         max_length=100,

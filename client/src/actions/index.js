@@ -30,12 +30,12 @@ export const loginUser = (userData) => async (dispatch) => {
       return false;
     } else {
       dispatch({type: LOGIN, payload: res.data});
-      return true;
+      return res.data;
     }
 }
 
 export const logoutUser = () => async (dispatch) => {
-  await axiosInstance.post('token/blacklist',{
+  await axiosInstance.post('token/blacklist/',{
     refresh_token: localStorage.getItem('refresh_token'),
   });
   dispatch({type: LOGOUT, payload: null})

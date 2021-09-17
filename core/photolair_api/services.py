@@ -30,7 +30,7 @@ def buy_image(buy_user, image_id):
 
     sell_user = User.objects.get(pk=image.user.id)
     
-    # Use F expression to avoid race conditions and work on DB inst directly
+    # Use F expression to avoid race conditions and work on DB data directly
     buy_user.credits = F('credits') - image.price
     buy_user.save()
 
@@ -40,4 +40,4 @@ def buy_image(buy_user, image_id):
     image.inventory = F('inventory') - 1
     image.save()
 
-    return image.image.url    
+    return image.image.url

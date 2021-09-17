@@ -4,21 +4,18 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 
 import Header from './Header';
-import Register from './Authorization/register'
-import Login from './Authorization/login';
+import Register from './Register'
+import Login from './Login';
+import ImageGrid from './ImageGrid';
 
-class App extends Component {
-  componentDidMount() {
-    this.props.fetchUser();
-  }
-  
+class App extends Component {  
   render() {
     return (
       <BrowserRouter>
         <Header />
         <div>
           <Switch>
-            <Route path= '/' exact component={Register} />
+            <Route path= '/' exact component={ImageGrid} />
             <Route path= '/register' exact component={Register} />
             <Route path='/login' exact component={Login} />
           </Switch>

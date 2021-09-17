@@ -5,7 +5,7 @@ from .views import (
   MeView,
   ImageListView,
   ImageDetailView,
-  BlackListTokenView
+  BlackListTokenView,
 )
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
