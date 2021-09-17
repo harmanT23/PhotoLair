@@ -7,10 +7,10 @@ and inventory (i.e. number of allowed downloads) for their image. To purchase an
 a user must have enough credits and the desired image must be in stock.
 By default, all new users start with 50 credits which can immediately be used
 to purchase images on the marketplace. User's gain credits on the marketplace
-when their images are bought. Once an image is sold out it is removed from the marketplace.
-An account is required to purchase/sell images, though anyone can view the images on the
+when their images are sold. Once an image is sold out it is removed from the marketplace.
+An account is required to purchase/sell images, though anyone can view the available images on the
 marketplace. The application uses simple token based authentication thus reducing the number
-of times a user has to provide their credentials.
+of times a user has to provide their login credentials.
 
 This project is currently hosted at: Soon to be hosted...
 
