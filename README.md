@@ -34,8 +34,8 @@ To be added...
 To run this application you'll need:
 - Python 3.7 or higher
 - Node.js & npm installed 
-- A local installation of [PostgreSQL](https://www.postgresql.org/download/) and a database instance named photolair
-or anything else by changing the database name in ```core/core/settings.py```
+- A local installation of [PostgreSQL](https://www.postgresql.org/download/)
+- A PostgreSQL database instance titled ```photolair``` or another database name can be chosen by modifying the database settings in ```core/core/settings.py```
    > ### Note
    >
    > If you have brew, install PostgreSQL with the following steps:
