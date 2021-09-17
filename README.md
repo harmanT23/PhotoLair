@@ -117,8 +117,8 @@ The following endpoints are currently implemented:
 
 ### User Endpoints
 - ```POST /api/users/``` - Register a new user with username and password.
-- ```GET /api/users/{id}/``` - Get details about a specific user
 - ```GET /api/users/me/``` - Get details about the currently authenticated user
+- ```GET /api/users/{id}/``` - Get details about a specific user
 - ```PATCH /api/users/{id}/``` - Update a specific user's details
 - ```DELETE /api/users/{id}/``` - Delete a specific user's details 
 
