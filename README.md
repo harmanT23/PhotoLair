@@ -53,7 +53,7 @@ https://github.com/harmanT23/PhotoLair.git
 
 #### Django Backend
 
-Set up a virtual environment for development (recommend using venv)
+Set up a virtual environment for development. Install virtualenv.
 ```
 pip install virtualenv
 ```
