@@ -139,6 +139,7 @@ class Sell extends Component {
                 id='title'
                 label='title'
                 name='title'
+                placeholder='Enter title for your image i.e. Scenic Views'
                 autoFocus
                 value={this.state.title}
                 onChange={this.handleChange}
@@ -159,6 +160,7 @@ class Sell extends Component {
                 id='price'
                 label='price'
                 name='price'
+                placeholder='Enter price in credits (a positive number) i.e. 2'
                 autoFocus
                 value={this.state.price}
                 onChange={this.handleChange}
@@ -179,6 +181,7 @@ class Sell extends Component {
                 id='inventory'
                 label='inventory'
                 name='inventory'
+                placeholder='Enter inventory (a positive number) i.e. 5'
                 autoFocus
                 value={this.state.inventory}
                 onChange={this.handleChange}
