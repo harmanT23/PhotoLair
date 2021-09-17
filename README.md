@@ -24,7 +24,7 @@ To be added...
 - [PostgreSQL](https://www.postgresql.org/) - Databased used to store data
 - [Node.js](https://nodejs.org/en/) - JavaScript run-time environment 
 
-## Libraries and Services:
+### Libraries and Services:
 - [Django Rest Framework](https://www.django-rest-framework.org/) - Toolkit for building WEB APIs
 - [SimpleJWT](https://django-rest-framework-simplejwt.readthedocs.io/en/latest/) - Provides a JSON Web Token authentication backend for the Django REST Framework
 - [Boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html) - AWS SDK to configure S3 storage 
