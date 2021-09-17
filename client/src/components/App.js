@@ -7,6 +7,7 @@ import Header from './Header';
 import Register from './Register'
 import Login from './Login';
 import ImageGrid from './ImageGrid';
+import Sell from './Sell';
 
 class App extends Component {  
   render() {
@@ -18,6 +19,7 @@ class App extends Component {
             <Route path= '/' exact component={ImageGrid} />
             <Route path= '/register' exact component={Register} />
             <Route path='/login' exact component={Login} />
+            <Route path='/sell' exact component={Sell} />
           </Switch>
         </div>
       </BrowserRouter>

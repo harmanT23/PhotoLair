@@ -40,6 +40,12 @@ const useStyles = (theme) => ({
   leftAligned: {
      marginLeft: 'auto',
   },
+  sellButton: {
+    '&:hover': {
+      backgroundColor: '#FF6701',
+      color: '#FFFFFF',
+   },
+  },
   dropdown: {
      '&:focus': {
         backgroundColor: theme.palette.primary.main,
@@ -78,34 +84,34 @@ class Header extends Component {
 
   menuDropdown = () => {
     if (this.state.dropDownMenuElement) {
-       return (
-          <Menu
-             id='account-dropdown'
-             anchorEl={this.state.dropDownMenuElement}
-             getContentAnchorEl={null}
-             anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'right',
-             }}
-             transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-             }}
-             elevation={0}
-             keepMounted
-             open={Boolean(this.state.dropDownMenuElement)}
-             onClose={this.handleClose}
-             border='1px solid #d3d4d5'
-             visible={this.state.dropDownMenuElement}
-          >
-              <MenuItem className='dropdown' onClick={this.handleLogout}>
-                Logout
-             </MenuItem>
-          </Menu>
-       );
-    } else {
-       return;
-    }
+      return (
+      <Menu
+        id='account-dropdown'
+        anchorEl={this.state.dropDownMenuElement}
+        getContentAnchorEl={null}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'right',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        elevation={0}
+        keepMounted
+        open={Boolean(this.state.dropDownMenuElement)}
+        onClose={this.handleClose}
+        border='1px solid #d3d4d5'
+        visible={this.state.dropDownMenuElement}
+      >
+        <MenuItem className='dropdown' onClick={this.handleLogout}>
+          Logout
+        </MenuItem>
+      </Menu>
+      );
+  } else {
+      return;
+  }
   };
 
   getMenuItems(userData, classes, width) {
@@ -117,7 +123,7 @@ class Header extends Component {
       return (
         <Fragment>
           <Tooltip 
-            title='Spend credits to buy an image. Gain credits by selling images.'
+            title='Your credit balance. Buy/Sell images with credits.'
             aria-label='add'
           >
             <Button 
@@ -201,6 +207,34 @@ class Header extends Component {
     );
   }
 
+  getSellButton(classes) {
+    return (
+      <Tooltip 
+        title='Sell your image(s) for credits'
+        aria-label='add'
+      >
+      <Link
+        to='/sell'
+        className={classes.rightSideButtons}
+      >
+        <Button
+          size='medium'
+          color='secondary'
+          style={{ marginLeft: 'auto' }}
+          className={classes.sellButton}
+        >
+          <Typography 
+            variant='h6'
+            className={classes.title}
+          >
+            Sell
+          </Typography>
+        </Button>
+      </Link>
+    </ Tooltip>
+    );
+  }
+
   render() {
     const {
       size: {width},
@@ -230,6 +264,7 @@ class Header extends Component {
             <div
               className={classes.leftAligned}
             >
+              {this.getSellButton(classes)}
               {this.getMenuItems(this.props.userData, classes, width)}
               {this.getLoginButton(this.props.userData, classes)}
             </div>

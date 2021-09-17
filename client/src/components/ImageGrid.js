@@ -11,7 +11,7 @@ import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
 
 import * as actions from '../actions';
-import BuyImageAndDownload from '../services/BuyImageAndDownload';
+import BuyAndDownloadImage from '../services/BuyAndDownloadImage';
 import { checkEmpty }  from '../utilities/checkEmptyObj';
 
 
@@ -109,7 +109,7 @@ class ImageGrid extends Component {
                     {image.inventory}
                    </Box>
                  </Typography>
-                 <BuyImageAndDownload 
+                 <BuyAndDownloadImage 
                   imageID={image.id}
                   image_name={image.image_name} 
                  />

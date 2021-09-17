@@ -80,10 +80,17 @@ class Login extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <Container component="main" maxWidth="xs">
+      <Container 
+        component="main" 
+        maxWidth="xs"
+      >
         <CssBaseline />
-        <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
+        <div 
+          className={classes.paper}
+        >
+          <Avatar 
+            className={classes.avatar}
+          >
             <LockOutlinedIcon />
           </Avatar>
           <Typography
@@ -96,8 +103,14 @@ class Login extends Component {
             onSubmit={this.handleSubmit}
             className={classes.form}
           >
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
+            <Grid 
+              container 
+              spacing={2}
+            >
+              <Grid 
+                item 
+                xs={12}
+              >
                 <TextValidator
                   variant='outlined'
                   margin='normal'
@@ -160,5 +173,3 @@ export default compose(
   withRouter, 
   connect(null, actions)
 )(Login);
-
-

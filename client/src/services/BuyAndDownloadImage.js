@@ -14,13 +14,13 @@ const useStyles = (theme) => ({
      marginLeft: 'auto',
      textDecoration: 'none',
      '&:hover': {
-        backgroundColor: '#3c52b2',
-        color: '#fff',
+        backgroundColor: '#3C52B2',
+        color: '#FFFFFF',
      },
   },
 });
 
-class BuyImageAndDownload extends Component {
+class BuyAndDownloadImage extends Component {
   state = {
     error: false,
   };
@@ -84,4 +84,4 @@ function mapStateToProps({ userData }) {
 export default compose(
   withStyles(useStyles), 
   connect(mapStateToProps, actions)
-)(BuyImageAndDownload);
+)(BuyAndDownloadImage);

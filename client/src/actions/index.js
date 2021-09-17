@@ -42,16 +42,16 @@ export const logoutUser = () => async (dispatch) => {
 }
 
 export const fetchUser = () => async (dispatch) => {
-  await axiosInstance.get('users/me').then((res) => {
-    if (res.status !== statusCodes.OK) {
-      return false;
-    } else {
-      dispatch({type: FETCH_USER, payload: res.data})
-      return true;
-    }
-  }).catch(() => {
+  const res = await axiosInstance.get('users/me').catch(() => {
     return false;
   });
+
+  if (res.status !== statusCodes.OK) {
+    return false;
+  } else {
+    dispatch({type: FETCH_USER, payload: res.data})
+    return true;
+  }
 }
 
 export const fetchImageList = () => async (dispatch) => {
