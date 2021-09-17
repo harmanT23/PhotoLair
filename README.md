@@ -1,7 +1,6 @@
 # PhotoLair
 
-An image marketplace where users can sell their images for credits and spend credits
-on downloading other user's images.
+An Image marketplace web app where users gain credits by selling images or acquire images by spending credits.
 
 When selling an image, a user will need to provide a title, price 
 and inventory (i.e. number of allowed downloads) for their image. To purchase an image,
