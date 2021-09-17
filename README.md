@@ -128,7 +128,7 @@ The following endpoints are currently implemented:
 - ```GET /api/images/{image_id}/``` - Download the specified image, this endpoint will transfer the required amount of credits from the authenticated user 
 to the user who posted the image as well as update the inventory of the image.
 - ```PATCH /api/images/{image_id}``` - Update details of the image such as its title, price and inventory as well as the option to replace the image itself
-- - ```PATCH /api/images/{image_id}``` - Delete the specified image
+- ```DEL /api/images/{image_id}``` - Delete the specified image
 
 ## Contributing
 1. [Fork it](https://github.com/harmanT23/PhotoLair/fork)
