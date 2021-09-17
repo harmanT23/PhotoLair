@@ -7,7 +7,7 @@ const axiosInstance = axios.create({
   baseURL: baseURL,
   timeout: 5000,
   headers: {
-    Authorization: (localStorage.getItem('access_token') !== 'undefined' && 
+    Authorization: (localStorage.getItem('access_token') !== 'undefined' &&
                     localStorage.getItem('access_token') !== null)
                       ? 'JWT ' + localStorage.getItem('access_token')
                       : null,
@@ -27,8 +27,7 @@ axiosInstance.interceptors.response.use(
     // Handle server failure
     if (typeof error.response === 'undefined') {
       alert(
-        'A server/network error occurred. ' +
-        'Potential CORS problem. '
+        'A server/network error occurred.'
       );
       return Promise.reject(error);
     }

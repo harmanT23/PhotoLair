@@ -73,7 +73,11 @@ class Login extends Component {
         });
       }
     }).catch((err) => {
-      alert(err.response.data.msg)
+      if (err.response.data.msg === 'undefined') {
+        alert('Username or password is incorrect. Try again')
+      } else {
+        alert(err.response.data.msg)
+      }
     });
   };
   

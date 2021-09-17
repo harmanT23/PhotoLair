@@ -101,6 +101,7 @@ class Register extends Component {
         this.setState({
           error: 'This username is already taken.'
         });
+        alert(this.props.error);
       }
     });
   };

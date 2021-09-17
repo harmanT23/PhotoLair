@@ -82,8 +82,6 @@ class Sell extends Component {
   handleSubmit = async () => {
     this.props.fetchUser();
 
-    console.log(this.state.image)
-
     const formData = new FormData();
     formData.append('image_name', this.state.title);
     formData.append('price', this.state.price);

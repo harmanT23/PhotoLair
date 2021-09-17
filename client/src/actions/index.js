@@ -46,7 +46,7 @@ export const fetchUser = () => async (dispatch) => {
     return false;
   });
 
-  if (res.status !== statusCodes.OK) {
+  if (!res || res.status !== statusCodes.OK) {
     return false;
   } else {
     dispatch({type: FETCH_USER, payload: res.data})
@@ -56,5 +56,12 @@ export const fetchUser = () => async (dispatch) => {
 
 export const fetchImageList = () => async (dispatch) => {
   const res = await axiosInstance.get('/images')
-  dispatch({type: FETCH_IMAGE_LIST, payload: res.data})
+
+  if (res.status !== statusCodes.OK) {
+    return false;
+  } else {
+    dispatch({type: FETCH_IMAGE_LIST, payload: res.data})
+    return true;
+  }
+
 }

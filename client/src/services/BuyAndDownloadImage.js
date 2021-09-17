@@ -46,8 +46,6 @@ class BuyAndDownloadImage extends Component {
         })
       );
       
-      console.log(res)
-      console.log(url)
       const link = document.createElement('a');
       link.href = url;
       link.setAttribute(
