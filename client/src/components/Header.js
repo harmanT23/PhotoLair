@@ -207,32 +207,34 @@ class Header extends Component {
     );
   }
 
-  getSellButton(classes) {
-    return (
-      <Tooltip 
-        title='Sell your image(s) for credits'
-        aria-label='add'
-      >
-      <Link
-        to='/sell'
-        className={classes.rightSideButtons}
-      >
-        <Button
-          size='medium'
-          color='secondary'
-          style={{ marginLeft: 'auto' }}
-          className={classes.sellButton}
+  getSellButton(userData, classes) {
+    if(!checkEmpty(userData)) {
+      return (
+        <Tooltip 
+          title='Sell your image(s) for credits'
+          aria-label='add'
         >
-          <Typography 
-            variant='h6'
-            className={classes.title}
+        <Link
+          to='/sell'
+          className={classes.rightSideButtons}
+        >
+          <Button
+            size='medium'
+            color='secondary'
+            style={{ marginLeft: 'auto' }}
+            className={classes.sellButton}
           >
-            Sell
-          </Typography>
-        </Button>
-      </Link>
-    </ Tooltip>
-    );
+            <Typography 
+              variant='h6'
+              className={classes.title}
+            >
+              Sell
+            </Typography>
+          </Button>
+        </Link>
+      </ Tooltip>
+      );
+    }
   }
 
   render() {
@@ -264,7 +266,7 @@ class Header extends Component {
             <div
               className={classes.leftAligned}
             >
-              {this.getSellButton(classes)}
+              {this.getSellButton(this.props.userData, classes)}
               {this.getMenuItems(this.props.userData, classes, width)}
               {this.getLoginButton(this.props.userData, classes)}
             </div>

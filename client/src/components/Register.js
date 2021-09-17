@@ -127,9 +127,18 @@ class Register extends Component {
           >
               Register
           </Typography>
-          <ValidatorForm onSubmit={this.handleSubmit} className={classes.form}>
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
+          <ValidatorForm 
+            onSubmit={this.handleSubmit} 
+            className={classes.form}
+          >
+            <Grid 
+              container 
+              spacing={2}
+            >
+              <Grid 
+                item 
+                xs={12}
+              >
                 <TextValidator
                   validators={['required', 'usernameLength']}
                   variant='outlined'
@@ -147,7 +156,10 @@ class Register extends Component {
                   helperText={this.state.error}
                 />
               </Grid>
-              <Grid item xs={12}>
+              <Grid 
+                item 
+                xs={12}
+              >
                 <TextValidator
                   validators={['required', 'passwordLength']}
                   variant='outlined'
