@@ -38,7 +38,7 @@ This section is intended to familiarize readers new to Django on how it works an
 Django is a backend framework written in Python that implements a variation of the Model View Controller (MVC) design pattern called Model View Template (MVT). The **Model** portion handles the database, **Template** handles User Interface and the **View** is used to implement the business logic and endpoints. In Django there is no separate controller, the application is completely handled by the relevant view. 
 
 
-[Django-MVT](https://djangobook.com/wp-content/uploads/MTV-Diagram.png)
+![Django-MVT](https://djangobook.com/wp-content/uploads/MTV-Diagram.png)
 Reference: https://djangobook.com/mdj2-django-structure/
 
 ### Django Project Structure
@@ -46,7 +46,7 @@ A Django web application is a self-contained package constructed from a number o
 
 As for the Django apps developed for this project, we have **photolair** and **photolair_api** that each provide a specific utility. The **photolair** app provides the models for the application along with any special utilities and Django Signals needed to operate on the models. On the other hand, the **photolair_api** app utilizes the Django Rest Framework to implement the web api (i.e. **views**). The section below provides the overall directory of the project and labels key folders with what they contain.
 
-[Django-Struct](https://djangobook.com/wp-content/uploads/structure_drawing1_new.png)
+![Django-Struct](https://djangobook.com/wp-content/uploads/structure_drawing1_new.png)
 Reference: https://djangobook.com/mdj2-django-structure/
 
 
