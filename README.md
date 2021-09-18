@@ -32,12 +32,26 @@ This project is currently hosted at: Soon to be hosted...
 - [Boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html) - AWS SDK to configure S3 storage 
 
 ## About Django
-This section is intended to familiarize readers new to Django a bit about how it works and the overall directory structure.
+This section is intended to familiarize readers new to Django on how it works and the overall directory structure.
 
-### Backend Directory
+### What is Django?
+Django is a backend framework written in Python that implements a variation of the Model View Controller (MVC) design pattern called Model View Template (MVT). The **Model** portion handles the database, **Template** handles User Interface and the **View** is used to implement the business logic and endpoints. In Django there is no separate controller, the application is completely handled by the relevant view. 
+
+
+[Django-MVT](https://djangobook.com/wp-content/uploads/MTV-Diagram.png)
+Reference: https://djangobook.com/mdj2-django-structure/
+
+### Django Project Structure
+A Django web application is a self-contained package constructed from a number of what Django likes to call 'apps' that each provide a specific utility to the overall application. For this project, we have the high-level directory known as **core**  that provides application wide settings, integration of Django and third-party apps along with any database or external resource (i.e. S3 bucket) configurations. 
+
+As for the Django apps developed for this project, we have **photolair** and **photolair_api** that each provide a specific utility. The **photolair** app provides the models for the application along with any special utilities and Django Signals needed to operate on the models. On the other hand, the **photolair_api** app utilizes the Django Rest Framework to implement the web api (i.e. **views**). The section below provides the overall directory of the project and labels key folders with what they contain.
+
+[Django-Struct](https://djangobook.com/wp-content/uploads/structure_drawing1_new.png)
+Reference: https://djangobook.com/mdj2-django-structure/
+
 
 ```
-├── core
+├── core                <= Project folder with application wide settings and integrations 
 │   ├── __init__.py
 │   ├── __pycache__
 │   ├── asgi.py
@@ -46,50 +60,50 @@ This section is intended to familiarize readers new to Django a bit about how it
 │   ├── urls.py
 │   └── wsgi.py
 ├── manage.py
-├── photolair
+├── photolair          <= Django App for Models
 │   ├── __init__.py
 │   ├── __pycache__
 │   ├── admin.py
 │   ├── apps.py
-│   ├── managers
+│   ├── managers       <= Manager for creating custom user model instances
 │   │   ├── __init__.py
 │   │   ├── __pycache__
 │   │   └── user_manager.py
 │   ├── migrations
-│   ├── models
+│   ├── models          <= Models for the project
 │   │   ├── __init__.py
 │   │   ├── __pycache__
 │   │   ├── images.py
 │   │   └── users.py
-│   ├── signals
+│   ├── signals        <= Signals for pre/post modification of DB instances
 │   │   ├── __init__.py
 │   │   ├── __pycache__
 │   │   └── image_signals.py
-│   └── utilities
+│   └── utilities      <= Utility functions for creation/modification of DB instances
 │       ├── __init__.py
 │       ├── __pycache__
 │       └── image_utilities.py
-└── photolair_api
+└── photolair_api     <= Django App for View Logic (i.e. implements API)
     ├── __init__.py
     ├── __pycache__
     ├── apps.py
     ├── migrations
-    ├── permissions
+    ├── permissions   <= Permissions required for objects returned from endpoints
     │   ├── __init__.py
     │   ├── __pycache__
     │   ├── image_permissions.py
     │   └── user_permissions.py
-    ├── serializers
+    ├── serializers   <= Custom serializers used to convert model instances to Python datatypes that are then easily rendered into JSON
     │   ├── __init__.py
     │   ├── __pycache__
     │   ├── image_serializers.py
     │   └── user_serializers.py
-    ├── services
+    ├── services      <= Provides services for endpoints that need to perform complex operatons on DB instances
     │   ├── __init__.py
     │   ├── __pycache__
     │   └── image_services.py
     ├── urls.py
-    └── views
+    └── views        <= Implements the API endpoints and any custom logic/settings 
         ├── __init__.py
         ├── __pycache__
         ├── image_views.py
