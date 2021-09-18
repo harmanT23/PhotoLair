@@ -32,7 +32,7 @@ This project is currently hosted at: Soon to be hosted...
 - [Boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html) - AWS SDK to configure S3 storage 
 
 ## About Django
-This section is intended to familiarize readers new to Django on how it works and the overall directory structure.
+This section is intended to familiarize readers new to Django on how it works and the overall directory structure. It relates the working of Django with this project to help make the overall implementation clear.
 
 ### What is Django?
 Django is a backend framework written in Python that implements a variation of the Model View Controller (MVC) design pattern called Model View Template (MVT). The **Model** portion handles the database, **Template** handles User Interface and the **View** is used to implement the business logic and endpoints. In Django there is no separate controller, the application is completely handled by the relevant view. 
