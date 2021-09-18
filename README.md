@@ -64,7 +64,7 @@ Reference: https://djangobook.com/mdj2-django-structure/
 │   └── wsgi.py
 ├── manage.py
 ├── mediafiles
-├── Postman_Collection
+├── postman_collection
 ├── photolair          <= Django App for Models
 │   ├── __init__.py
 │   ├── __pycache__
