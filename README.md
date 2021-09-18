@@ -38,7 +38,7 @@ This section is intended to familiarize readers new to Django on how it works an
 Django is a backend framework written in Python that implements a variation of the Model View Controller (MVC) design pattern called Model View Template (MVT). The **Model** portion handles the database, **Template** handles User Interface and the **View** is used to implement the business logic and endpoints. In Django there is no separate controller, the application is completely handled by the relevant view. 
 
 
-![Django-MVT](https://djangobook.com/wp-content/uploads/MTV-Diagram.png)
+![Django-MVT](https://imgur.com/CRVbSnC.png)
 <br/>
 Reference: https://djangobook.com/mdj2-django-structure/
 
