@@ -96,7 +96,7 @@ Reference: https://djangobook.com/mdj2-django-structure/
     │   ├── __pycache__
     │   ├── image_permissions.py
     │   └── user_permissions.py
-    ├── serializers   <= Custom serializers used to convert model instances to Python datatypes that are then easily rendered into JSON
+    ├── serializers   <= Serializers convert model instance to Python datatypes that are then rendered into JSON
     │   ├── __init__.py
     │   ├── __pycache__
     │   ├── image_serializers.py
