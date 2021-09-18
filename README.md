@@ -31,6 +31,72 @@ This project is currently hosted at: Soon to be hosted...
 - [SimpleJWT](https://django-rest-framework-simplejwt.readthedocs.io/en/latest/) - Provides a JSON Web Token authentication backend for the Django REST Framework
 - [Boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html) - AWS SDK to configure S3 storage 
 
+## About Django
+This section is intended to familiarize readers new to Django a bit about how it works and the overall directory structure.
+
+### Backend Directory
+
+```
+├── core
+│   ├── __init__.py
+│   ├── __pycache__
+│   ├── asgi.py
+│   ├── settings.py
+│   ├── storage_backends.py
+│   ├── urls.py
+│   └── wsgi.py
+├── manage.py
+├── photolair
+│   ├── __init__.py
+│   ├── __pycache__
+│   ├── admin.py
+│   ├── apps.py
+│   ├── managers
+│   │   ├── __init__.py
+│   │   ├── __pycache__
+│   │   └── user_manager.py
+│   ├── migrations
+│   ├── models
+│   │   ├── __init__.py
+│   │   ├── __pycache__
+│   │   ├── images.py
+│   │   └── users.py
+│   ├── signals
+│   │   ├── __init__.py
+│   │   ├── __pycache__
+│   │   └── image_signals.py
+│   └── utilities
+│       ├── __init__.py
+│       ├── __pycache__
+│       └── image_utilities.py
+└── photolair_api
+    ├── __init__.py
+    ├── __pycache__
+    ├── apps.py
+    ├── migrations
+    ├── permissions
+    │   ├── __init__.py
+    │   ├── __pycache__
+    │   ├── image_permissions.py
+    │   └── user_permissions.py
+    ├── serializers
+    │   ├── __init__.py
+    │   ├── __pycache__
+    │   ├── image_serializers.py
+    │   └── user_serializers.py
+    ├── services
+    │   ├── __init__.py
+    │   ├── __pycache__
+    │   └── image_services.py
+    ├── urls.py
+    └── views
+        ├── __init__.py
+        ├── __pycache__
+        ├── image_views.py
+        ├── token_views.py
+        └── user_views.py
+```
+
 ## Development
 ### Prerequisites
 To run this application you'll need:
