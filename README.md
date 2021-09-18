@@ -39,6 +39,7 @@ Django is a backend framework written in Python that implements a variation of t
 
 
 ![Django-MVT](https://djangobook.com/wp-content/uploads/MTV-Diagram.png)
+<br/>
 Reference: https://djangobook.com/mdj2-django-structure/
 
 ### Django Project Structure
@@ -47,9 +48,11 @@ A Django web application is a self-contained package constructed from a number o
 As for the Django apps developed for this project, we have **photolair** and **photolair_api** that each provide a specific utility. The **photolair** app provides the models for the application along with any special utilities and Django Signals needed to operate on the models. On the other hand, the **photolair_api** app utilizes the Django Rest Framework to implement the web api (i.e. **views**). The section below provides the overall directory of the project and labels key folders with what they contain.
 
 ![Django-Struct](https://djangobook.com/wp-content/uploads/structure_drawing1_new.png)
+<br/>
 Reference: https://djangobook.com/mdj2-django-structure/
 
 
+### Django Project Structure
 ```
 ├── core                <= Project folder with application wide settings and integrations 
 │   ├── __init__.py
