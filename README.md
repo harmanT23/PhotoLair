@@ -128,7 +128,7 @@ To run this application you'll need:
    > -  `brew install postgresql` to install PostgreSQL
    > -  `brew services start postgresql` to start the PostgreSQL service (stop it with `brew services stop PostgreSQL`)
 - The backend is capable of implementing the image marketplace either using local file storage or an S3 bucket. To use the S3 bucket you will need to create an AWS account, set up a S3 bucket with ```block all public access``` unchchecked and a user assigned to the bucket with full access. You will then need a .env file with the following parameters filled out and placed in the projects core/core folder.
-   > - AWS_S3=True
+   > - AWS_S3=TRUE
    > - AWS_ACCESS_KEY_ID= <users_access_key>
    > - AWS_SECRET_ACCESS_KEY=<users_secret_access_key>
    > - AWS_STORAGE_BUCKET_NAME=<s3_bucket_name>
