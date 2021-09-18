@@ -1,8 +1,10 @@
-from photolair.models import Image
 from django.db.models import F
 from django.shortcuts import get_object_or_404
+from rest_framework import status
 from rest_framework.exceptions import APIException
 from django.contrib.auth import get_user_model
+
+from photolair.models import Image
 
 User = get_user_model()
 
@@ -23,10 +25,16 @@ def buy_image(buy_user, image_id):
             
     if image.inventory == 0:
         _remove_sold_out_image(image)
-        raise APIException('Image is sold out.')
+        raise APIException(
+            'Image is sold out.', 
+            code=status.HTTP_403_FORBIDDEN
+        )
         
     if buy_user.credits < image.price:
-        raise APIException('User does not have enough credits.')
+        raise APIException(
+            'User does not have enough credits.', 
+            code=status.HTTP_402_PAYMENT_REQUIRED
+        )
 
     sell_user = User.objects.get(pk=image.user.id)
     
@@ -40,4 +48,4 @@ def buy_image(buy_user, image_id):
     image.inventory = F('inventory') - 1
     image.save()
 
-    return image.image.url
+    return image

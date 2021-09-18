@@ -66,13 +66,11 @@ MIDDLEWARE = [
     'drf_api_logger.middleware.api_logger_middleware.APILoggerMiddleware',
 ]
 
-# TODO: Fix this
 CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:8000',
     'http://localhost:8000',
     'http://localhost:3000',
 ]
-
 
 ROOT_URLCONF = 'core.urls'
 
@@ -162,7 +160,6 @@ if AWS_S3:
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
     DEFAULT_FILE_STORAGE = 'core.storage_backends.PublicMediaStorage'
 else:
-
     MEDIA_URL = '/mediafiles/'
     MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
 

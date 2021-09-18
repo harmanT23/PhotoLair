@@ -34,10 +34,14 @@ const useStyles = (theme) => ({
    },
    submit: {
       margin: theme.spacing(3, 0, 2),
+      '&:hover': {
+        backgroundColor: '#00ADB5',
+        color: '#FFFFFF',
+       }
    },
 });
 
-class Register extends Component {
+class RegisterPage extends Component {
   state = {
     username: '',
     password: '',
@@ -184,7 +188,7 @@ class Register extends Component {
               type='submit'
               fullWidth
               variant='contained'
-              color='primary'
+              color='#393E46'
               className={classes.submit}
             >
               Register
@@ -206,4 +210,4 @@ export default compose(
   withStyles(useStyles), 
   withRouter, 
   connect(null, actions)
-)(Register)
+)(RegisterPage)

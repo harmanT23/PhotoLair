@@ -27,7 +27,10 @@ const useStyles = (theme) => ({
   },
   mainButton: {
      textDecoration: 'none',
-     color: '#FF6701',
+     color: '#00ADB5',
+  },
+  appBarRoot: {
+    backgroundColor: '#393E46'
   },
   title: {
      flexGrow: 1,
@@ -42,7 +45,7 @@ const useStyles = (theme) => ({
   },
   sellButton: {
     '&:hover': {
-      backgroundColor: '#FF6701',
+      backgroundColor: '#00ADB5',
       color: '#FFFFFF',
    },
   },
@@ -133,8 +136,14 @@ class Header extends Component {
               <Typography
                 variant='h6'
                 className={classes.title}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  flexWrap: 'wrap',
+                }}
               >
-                <MonetizationOnIcon /> 
+                <MonetizationOnIcon />
+                <span> &nbsp; </span> 
                 <span> {`${userData.credits}`} </span>
               </Typography>
             </Button>
@@ -250,7 +259,7 @@ class Header extends Component {
         <CssBaseline />
         <AppBar
           position='static'
-          color='primary'
+          className={classes.appBarRoot}
         >
           <Toolbar>
             <Link

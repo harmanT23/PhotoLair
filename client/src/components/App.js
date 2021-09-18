@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 
 import Header from './Header';
-import Register from './Register'
-import Login from './Login';
+import RegisterPage from './RegisterPage'
+import LoginPage from './LoginPage';
 import ImageGrid from './ImageGrid';
-import Sell from './Sell';
+import SellPage from './SellPage';
 
 class App extends Component {  
   render() {
@@ -17,9 +17,9 @@ class App extends Component {
         <div>
           <Switch>
             <Route path= '/' exact component={ImageGrid} />
-            <Route path= '/register' exact component={Register} />
-            <Route path='/login' exact component={Login} />
-            <Route path='/sell' exact component={Sell} />
+            <Route path= '/register' exact component={RegisterPage} />
+            <Route path='/login' exact component={LoginPage} />
+            <Route path='/sell' exact component={SellPage} />
           </Switch>
         </div>
       </BrowserRouter>

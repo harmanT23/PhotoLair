@@ -14,7 +14,7 @@ const useStyles = (theme) => ({
      marginLeft: 'auto',
      textDecoration: 'none',
      '&:hover': {
-        backgroundColor: '#3C52B2',
+        backgroundColor: '#00ADB5',
         color: '#FFFFFF',
      },
   },
@@ -65,7 +65,7 @@ class BuyAndDownloadImage extends Component {
       <Button
         size='small'
         variant='outlined'
-        color='primary' 
+        color='#393E46' 
         className={classes.rightSideButtons} 
         onClick={this.handleClick}
       >

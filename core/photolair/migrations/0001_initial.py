@@ -5,7 +5,7 @@ import django.contrib.auth.validators
 from django.db import migrations, models
 import django.db.models.deletion
 import django.utils.timezone
-import photolair.image_handler
+from photolair.utilities import upload_image_path
 import photolair.managers
 import profanity.validators
 import uuid
@@ -53,7 +53,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.UUIDField(default=uuid.uuid4, editable=False, help_text='Image ID is a uuid.', primary_key=True, serialize=False, verbose_name='ID')),
                 ('image_name', models.CharField(help_text='Name of image.', max_length=100, validators=[profanity.validators.validate_is_profane], verbose_name='Image Name')),
-                ('image', models.ImageField(help_text='URL to image file/', upload_to=photolair.image_handler.upload_image_path, verbose_name='Image')),
+                ('image', models.ImageField(help_text='URL to image file/', upload_to=upload_image_path, verbose_name='Image')),
                 ('inventory', models.PositiveBigIntegerField(default=0, help_text='Defines number of available image downloads.', verbose_name='Credits')),
                 ('price', models.PositiveBigIntegerField(default=0, help_text='Defines price (in credits) for each image download.', verbose_name='Price')),
                 ('created_at', models.DateTimeField(auto_now=True, help_text='Indicates when image instance was created.', verbose_name='Created At')),

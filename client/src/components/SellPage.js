@@ -33,16 +33,20 @@ const useStyles = (theme) => ({
   rightSideButtons: {
     textDecoration: 'none',
     '&:hover': {
-       backgroundColor: '#3C52B2',
+       backgroundColor: '#00ADB5',
        color: '#FFFFFF',
     },
   },
   submit: {
      margin: theme.spacing(3, 0, 2),
+     '&:hover': {
+      backgroundColor: '#00ADB5',
+      color: '#FFFFFF',
+     }
   },
 });
 
-class Sell extends Component {
+class SellPage extends Component {
   state = {
     title: '',
     price: '',
@@ -198,7 +202,7 @@ class Sell extends Component {
               onChange={this.handleInput} 
             />
             <Button
-              color='primary' 
+              color='#393E46' 
               className={classes.rightSideButtons} 
               component="span"
               variant='outlined'
@@ -210,7 +214,7 @@ class Sell extends Component {
             type='submit'
             fullWidth
             variant='contained'
-            color='primary'
+            color='#393E46'
             className={classes.submit}
           >
             Submit
@@ -230,4 +234,4 @@ export default compose(
   withStyles(useStyles), 
   withRouter, 
   connect(mapStateToProps, actions)
-)(Sell);
+)(SellPage);

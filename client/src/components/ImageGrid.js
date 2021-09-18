@@ -11,7 +11,7 @@ import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
 
 import * as actions from '../actions';
-import BuyAndDownloadImage from '../services/BuyAndDownloadImage';
+import BuyAndDownloadImage from '../services/buyAndDownloadImage';
 import { checkEmpty }  from '../utilities/checkEmptyObj';
 
 
@@ -23,6 +23,7 @@ class ImageGrid extends Component {
 
   getImageList() {
     const imageList = this.props.imageList;
+    console.log(imageList)
 
     if (!checkEmpty(imageList)) {
       return imageList.map((image, idx) => (
