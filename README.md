@@ -32,7 +32,7 @@ This project is currently hosted at: Soon to be hosted...
 - [Boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html) - AWS SDK to configure S3 storage 
 
 ## About Django
-This section is intended to familiarize readers new to Django on how it works and the overall directory structure.
+This section is intended to familiarize readers new to Django on how it works and the overall directory structure. It relates the working of Django with this project to help make the overall implementation clear.
 
 ### What is Django?
 Django is a backend framework written in Python that implements a variation of the Model View Controller (MVC) design pattern called Model View Template (MVT). The **Model** portion handles the database, **Template** handles User Interface and the **View** is used to implement the business logic and endpoints. In Django there is no separate controller, the application is completely handled by the relevant view. 
@@ -63,6 +63,8 @@ Reference: https://djangobook.com/mdj2-django-structure/
 │   ├── urls.py
 │   └── wsgi.py
 ├── manage.py
+├── mediafiles
+├── postman_collection
 ├── photolair          <= Django App for Models
 │   ├── __init__.py
 │   ├── __pycache__
@@ -127,7 +129,7 @@ To run this application you'll need:
    >
    > -  `brew install postgresql` to install PostgreSQL
    > -  `brew services start postgresql` to start the PostgreSQL service (stop it with `brew services stop PostgreSQL`)
-- The backend is capable of implementing the image marketplace either using local file storage or an S3 bucket. To use the S3 bucket you will need to create an AWS account, set up a S3 bucket with ```block all public access``` unchchecked and a user assigned to the bucket with full access. You will then need a .env file with the following parameters filled out and placed in the projects core/core folder.
+- The backend is capable of implementing the image marketplace either using local file storage or an S3 bucket. To use the S3 bucket you will need to create an AWS account, set up a S3 bucket with ```block all public access``` unchchecked and a user assigned to the bucket with full access. You will then need a ```.env``` file with the following parameters filled out and placed in the projects ```core/core folder```.
    > - AWS_S3=TRUE
    > - AWS_ACCESS_KEY_ID= <users_access_key>
    > - AWS_SECRET_ACCESS_KEY=<users_secret_access_key>
