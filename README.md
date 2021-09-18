@@ -127,6 +127,11 @@ To run this application you'll need:
    >
    > -  `brew install postgresql` to install PostgreSQL
    > -  `brew services start postgresql` to start the PostgreSQL service (stop it with `brew services stop PostgreSQL`)
+- The Django backend is capable of implementing the image marketplace either using local file storage or an S3 bucket. To use the S3 bucket you will need to set up a S3 bucket on AWS with ```block all public access``` unchchecked and a user assigned to the S3 bucket with full access. You will then need a .env file with the following parameters filled out and placed in the projects core/core folder.
+   > AWS_S3=True
+   > AWS_ACCESS_KEY_ID=...
+   > AWS_SECRET_ACCESS_KEY=..
+   > AWS_STORAGE_BUCKET_NAME=..
 
 ### Getting Started
 In order to run the backend and/or the frontend locally follow the instructions below.
