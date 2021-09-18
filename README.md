@@ -15,7 +15,9 @@ of times a user has to provide their login credentials.
 This project is currently hosted at: Soon to be hosted...
 
 ## Screenshots 
-To be added...
+![Homepage](https://imgur.com/DTNSr5b.png)
+![Sell-Page](https://imgur.com/JJ98a0I.png)
+![Login](https://imgur.com/xsEEFcw.png)
 
 ## Built With
 ### Stack Used
