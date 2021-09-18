@@ -112,7 +112,7 @@ The following endpoints are currently implemented:
 ### Authentication Endpoints
 - ```POST /api/token/``` - Takes the username and password of a user and returns an access and refresh JSON web token pair to prove the authentication of those credentials.
 - ```POST /api/token/refresh/``` - Takes a refresh type JSON web token and returns an access type JSON web token if the refresh token is valid.
-- ```POST /api/logout/blacklist/``` - Used to blacklist refresh tokens after a user logs out.
+- ```POST /api/token/blacklist/``` - Used to blacklist refresh tokens after a user logs out.
 
 ### User Endpoints
 - ```POST /api/users/``` - Register a new user with username and password.
