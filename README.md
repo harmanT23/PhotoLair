@@ -12,7 +12,7 @@ An account is required to purchase/sell images, though anyone can view the avail
 marketplace. The application uses simple token based authentication thus reducing the number
 of times a user has to provide their login credentials.
 
-This project is currently hosted at: Soon to be hosted...
+This project is currently hosted at: https://sleepy-tor-00832.herokuapp.com/
 
 ## Screenshots 
 ![Homepage](https://imgur.com/DTNSr5b.jpeg)
