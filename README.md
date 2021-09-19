@@ -209,7 +209,7 @@ npm start
 ### Testing Models
 Detailed units tests for the models are available ```./core/photolair/tests```.
 
-To run all the unit tests at once simply run the following command
+To run all the unit tests at once simply run the following command in the ```./core``` folder
 ```
  ./manage.py test
 ```
