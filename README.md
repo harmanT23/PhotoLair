@@ -115,7 +115,7 @@ Reference: https://djangobook.com/mdj2-django-structure/
 │   │   ├── __init__.py
 │   │   └── image_services.py
 │   ├── urls.py
-│   └── views         <= Implements the API endpoints and any custom logic/settings 
+│   └── views         <= Implements the API endpoints and any custom logic
 │       ├── __init__.py
 │       ├── image_views.py
 │       ├── token_views.py
