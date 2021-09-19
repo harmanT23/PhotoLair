@@ -36,13 +36,19 @@ const useStyles = (theme) => ({
        backgroundColor: '#00ADB5',
        color: '#FFFFFF',
     },
+    primary: {
+      main: '#393E46'
+    }
   },
   submit: {
      margin: theme.spacing(3, 0, 2),
      '&:hover': {
       backgroundColor: '#00ADB5',
       color: '#FFFFFF',
-     }
+     },
+     primary: {
+      main: '#393E46'
+    }
   },
 });
 
@@ -202,7 +208,7 @@ class SellPage extends Component {
               onChange={this.handleInput} 
             />
             <Button
-              color='#393E46' 
+              color='primary' 
               className={classes.rightSideButtons} 
               component="span"
               variant='outlined'
@@ -214,7 +220,7 @@ class SellPage extends Component {
             type='submit'
             fullWidth
             variant='contained'
-            color='#393E46'
+            color='primary'
             className={classes.submit}
           >
             Submit

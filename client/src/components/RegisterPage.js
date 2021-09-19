@@ -37,7 +37,10 @@ const useStyles = (theme) => ({
       '&:hover': {
         backgroundColor: '#00ADB5',
         color: '#FFFFFF',
-       }
+       },
+      primary: {
+        main: '#393E46'
+      }
    },
 });
 
@@ -188,7 +191,7 @@ class RegisterPage extends Component {
               type='submit'
               fullWidth
               variant='contained'
-              color='#393E46'
+              color='primary'
               className={classes.submit}
             >
               Register

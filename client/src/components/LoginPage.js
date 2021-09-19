@@ -39,8 +39,16 @@ const useStyles = (theme) => ({
      '&:hover': {
       backgroundColor: '#00ADB5',
       color: '#FFFFFF',
-     }
+     },
+     primary: {
+      main: '#393E46'
+    }
   },
+  buttonColor: {
+    primary: {
+      main: '#393E46'
+    }
+  }
 });
 
 class LoginPage extends Component {
@@ -162,7 +170,7 @@ class LoginPage extends Component {
               type='submit'
               fullWidth
               variant='contained'
-              color='#393E46'
+              color='primary'
               className={classes.submit}
             >
               Login

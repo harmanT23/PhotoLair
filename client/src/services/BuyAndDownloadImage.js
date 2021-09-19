@@ -17,6 +17,9 @@ const useStyles = (theme) => ({
         backgroundColor: '#00ADB5',
         color: '#FFFFFF',
      },
+     primary: {
+      main: '#393E46'
+    }
   },
 });
 
@@ -65,7 +68,7 @@ class BuyAndDownloadImage extends Component {
       <Button
         size='small'
         variant='outlined'
-        color='#393E46' 
+        color='primary' 
         className={classes.rightSideButtons} 
         onClick={this.handleClick}
       >
