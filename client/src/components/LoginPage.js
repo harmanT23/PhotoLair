@@ -77,8 +77,12 @@ class LoginPage extends Component {
         });
       }
     }).catch((err) => {
-      if (err.response.data.msg === 'undefined') {
-        alert('Username or password is incorrect. Try again')
+      if (
+        !err.response.data.msg || err.response.data.msg === 'undefined'
+      ) {
+          alert(
+            'Username or password is incorrect. Try again or register for an account'
+          )
       } else {
         alert(err.response.data.msg)
       }

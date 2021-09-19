@@ -23,8 +23,6 @@ class ImageGrid extends Component {
 
   getImageList() {
     const imageList = this.props.imageList;
-    console.log(imageList)
-
     if (!checkEmpty(imageList)) {
       return imageList.map((image, idx) => (
         <div 

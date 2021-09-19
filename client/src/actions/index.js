@@ -12,7 +12,7 @@ import {
 export const registerUser = (userData) => async (dispatch) => {
   const res = await axiosInstance.post('users/', userData)
 
-  if (res.status !== statusCodes.CREATED) {
+  if (!res || res.status !== statusCodes.CREATED) {
     return false;
   } else {
     dispatch({type: REGISTER, payload: null});
@@ -26,7 +26,7 @@ export const loginUser = (userData) => async (dispatch) => {
       password: userData.password,
     });
 
-    if (res.status !== statusCodes.OK) {
+    if (!res || res.status !== statusCodes.OK) {
       return false;
     } else {
       dispatch({type: LOGIN, payload: res.data});
@@ -57,7 +57,7 @@ export const fetchUser = () => async (dispatch) => {
 export const fetchImageList = () => async (dispatch) => {
   const res = await axiosInstance.get('/images')
 
-  if (res.status !== statusCodes.OK) {
+  if (!res || res.status !== statusCodes.OK) {
     return false;
   } else {
     dispatch({type: FETCH_IMAGE_LIST, payload: res.data})
