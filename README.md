@@ -12,7 +12,7 @@ An account is required to purchase/sell images, though anyone can view the avail
 marketplace. The application uses simple token based authentication thus reducing the number
 of times a user has to provide their login credentials.
 
-This project is currently hosted at: https://sleepy-tor-00832.herokuapp.com/
+This project is currently hosted at: https://photolair.herokuapp.com/
 
 ## Screenshots 
 ![Homepage](https://imgur.com/DTNSr5b.jpeg)
@@ -54,9 +54,9 @@ Reference: https://djangobook.com/mdj2-django-structure/
 
 ### Django Project Structure
 ```
-├── core                <= Project folder with application wide settings and integrations 
+.
+├── core               <= Project folder with application wide settings and integrations 
 │   ├── __init__.py
-│   ├── __pycache__
 │   ├── asgi.py
 │   ├── settings.py
 │   ├── storage_backends.py
@@ -64,62 +64,70 @@ Reference: https://djangobook.com/mdj2-django-structure/
 │   └── wsgi.py
 ├── manage.py
 ├── mediafiles
-├── postman_collection
+│   └── images
 ├── photolair          <= Django App for Models
 │   ├── __init__.py
-│   ├── __pycache__
 │   ├── admin.py
 │   ├── apps.py
 │   ├── managers       <= Manager for creating custom user model instances
 │   │   ├── __init__.py
-│   │   ├── __pycache__
 │   │   └── user_manager.py
 │   ├── migrations
+│   │   ├── 0001_initial.py
+│   │   ├── 0002_auto_20210910_0708.py
+│   │   ├── 0003_alter_user_credits.py
+│   │   ├── 0004_alter_image_inventory.py
+│   │   ├── 0005_alter_user_credits.py
+│   │   └── __init__.py
 │   ├── models          <= Models for the project
 │   │   ├── __init__.py
-│   │   ├── __pycache__
 │   │   ├── images.py
 │   │   └── users.py
 │   ├── signals        <= Signals for pre/post modification of DB instances
 │   │   ├── __init__.py
-│   │   ├── __pycache__
 │   │   └── image_signals.py
+│   ├── tests          <= Unit tests for models
+│   │   ├── __init__.py
+│   │   ├── image_tests.py
+│   │   ├── test_images
+│   │   │   ├── mountains.jpeg
+│   │   │   ├── scenic_view.jpeg
+│   │   │   ├── simple.jpg
+│   │   │   └── sunsets.jpeg
+│   │   └── user_tests.py
 │   └── utilities      <= Utility functions for creation/modification of DB instances
 │       ├── __init__.py
-│       ├── __pycache__
 │       └── image_utilities.py
-└── photolair_api     <= Django App for View Logic (i.e. implements API)
-    ├── __init__.py
-    ├── __pycache__
-    ├── apps.py
-    ├── migrations
-    ├── permissions   <= Permissions required for objects returned from endpoints
-    │   ├── __init__.py
-    │   ├── __pycache__
-    │   ├── image_permissions.py
-    │   └── user_permissions.py
-    ├── serializers   <= Serializers convert model instance to Python datatypes that are then rendered into JSON
-    │   ├── __init__.py
-    │   ├── __pycache__
-    │   ├── image_serializers.py
-    │   └── user_serializers.py
-    ├── services      <= Provides services for endpoints that need to perform complex operatons on DB instances
-    │   ├── __init__.py
-    │   ├── __pycache__
-    │   └── image_services.py
-    ├── urls.py
-    └── views        <= Implements the API endpoints and any custom logic/settings 
-        ├── __init__.py
-        ├── __pycache__
-        ├── image_views.py
-        ├── token_views.py
-        └── user_views.py
+├── photolair_api     <= Django App for View Logic (i.e. implements API)
+│   ├── __init__.py
+│   ├── apps.py
+│   ├── migrations
+│   │   └── __init__.py
+│   ├── permissions   <= Permissions required for objects returned from endpoints
+│   │   ├── __init__.py
+│   │   ├── image_permissions.py
+│   │   └── user_permissions.py
+│   ├── serializers   <= Serializers convert model instance to Python datatypes that are then rendered into JSON
+│   │   ├── __init__.py
+│   │   ├── image_serializers.py
+│   │   └── user_serializers.py
+│   ├── services      <= Provides services for endpoints that need to perform complex operatons on DB instances
+│   │   ├── __init__.py
+│   │   └── image_services.py
+│   ├── urls.py
+│   └── views         <= Implements the API endpoints and any custom logic/settings 
+│       ├── __init__.py
+│       ├── image_views.py
+│       ├── token_views.py
+│       └── user_views.py
+└── postman_collection.   <= Postman collection for testing API
+    └── PhotoLair.postman_collection.json
 ```
 
 ## Development
 ### Prerequisites
 To run this application you'll need:
-- Python 3.7 or higher
+- Python 3.9.7 or higher
 - Node.js & npm installed 
 - A local installation of [PostgreSQL](https://www.postgresql.org/download/)
 - A PostgreSQL database instance titled ```photolair``` or another database name can be chosen by modifying the database settings in ```core/core/settings.py```
@@ -196,6 +204,20 @@ Start frontend
 ```
 npm start
 ```
+## Testing
+
+### Testing Models
+Detailed units tests for the models are available ```./core/photolair/tests```.
+
+To run all the unit tests at once simply run the following command
+```
+ ./manage.py test
+```
+
+### Testing API
+Complete API testing of all the endpoints are provided in the postman collection available in ```./core/postman_collection```
+
+Instruction for importing a postman collection are available [here](https://learning.postman.com/docs/getting-started/importing-and-exporting-data/#importing-data-into-postman)
 
 ## PhotoLair API
 The application provides an API for authentication, user accounts and images.
