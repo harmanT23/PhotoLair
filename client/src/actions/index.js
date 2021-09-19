@@ -10,7 +10,7 @@ import {
 
 // userData consists of username and password for registration
 export const registerUser = (userData) => async (dispatch) => {
-  const res = await axiosInstance.post('users/', userData)
+  const res = await axiosInstance.post('/users/', userData)
 
   if (!res || res.status !== statusCodes.CREATED) {
     return false;
@@ -21,7 +21,7 @@ export const registerUser = (userData) => async (dispatch) => {
 };
 
 export const loginUser = (userData) => async (dispatch) => {
-  const res = await axiosInstance.post('token/', {
+  const res = await axiosInstance.post('/token/', {
       username: userData.username,
       password: userData.password,
     });
@@ -35,14 +35,14 @@ export const loginUser = (userData) => async (dispatch) => {
 }
 
 export const logoutUser = () => async (dispatch) => {
-  await axiosInstance.post('token/blacklist/',{
+  await axiosInstance.post('/token/blacklist/',{
     refresh_token: localStorage.getItem('refresh_token'),
   });
   dispatch({type: LOGOUT, payload: null})
 }
 
 export const fetchUser = () => async (dispatch) => {
-  const res = await axiosInstance.get('users/me').catch(() => {
+  const res = await axiosInstance.get('/users/me/').catch(() => {
     return false;
   });
 
@@ -55,7 +55,7 @@ export const fetchUser = () => async (dispatch) => {
 }
 
 export const fetchImageList = () => async (dispatch) => {
-  const res = await axiosInstance.get('/images')
+  const res = await axiosInstance.get('/images/')
 
   if (!res || res.status !== statusCodes.OK) {
     return false;
