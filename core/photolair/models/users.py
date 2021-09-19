@@ -11,6 +11,7 @@ class User(AbstractUser):
     """
     User model that extends Django's built-in AbstractUser model.
     """
+    
     id = models.UUIDField(
         _('ID'),
         primary_key=True, 

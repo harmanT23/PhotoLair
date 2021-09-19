@@ -1,5 +1,3 @@
-import os
-import base64
 import requests
 import core.settings as app_settings
 from tempfile import NamedTemporaryFile
