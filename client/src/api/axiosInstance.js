@@ -36,10 +36,10 @@ axiosInstance.interceptors.response.use(
     // attempt at trying to acquire refresh token)
     if ( 
       error.response.status === statusCodes.UNAUTHORIZED &&
-      originalRequest.url === baseURL + 'token/refresh/'
+      originalRequest.url === (baseURL + 'token/refresh/')
     ) {
-      window.location.href = '/login/';
-      return Promise.reject(error);
+        window.location.href = '/login/';
+        return Promise.reject(error);
     }
 
     // Handle expired access token and get new one
