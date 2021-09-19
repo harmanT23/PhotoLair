@@ -115,7 +115,7 @@ Reference: https://djangobook.com/mdj2-django-structure/
 │   │   ├── __init__.py
 │   │   └── image_services.py
 │   ├── urls.py
-│   └── views         <= Implements the API endpoints and any custom logic/settings 
+│   └── views         <= Implements the API endpoints and any custom logic
 │       ├── __init__.py
 │       ├── image_views.py
 │       ├── token_views.py
@@ -209,7 +209,7 @@ npm start
 ### Testing Models
 Detailed units tests for the models are available ```./core/photolair/tests```.
 
-To run all the unit tests at once simply run the following command
+To run all the unit tests at once simply run the following command in the ```./core``` folder
 ```
  ./manage.py test
 ```
