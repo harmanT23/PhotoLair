@@ -11,7 +11,7 @@ import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
 
 import * as actions from '../actions';
-import BuyAndDownloadImage from '../services/buyAndDownloadImage';
+import BuyAndDownloadImage from '../services/BuyAndDownloadImage';
 import { checkEmpty }  from '../utilities/checkEmptyObj';
 
 
