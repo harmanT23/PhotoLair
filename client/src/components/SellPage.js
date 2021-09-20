@@ -150,8 +150,8 @@ class SellPage extends Component {
               <TextValidator
                 validators={[
                   'required', 
+                  'matchRegexp:^[0-9]+$',
                   'minNumber:0',
-                  'matchRegexp:^[0-9]+$'
                 ]}
                 variant='outlined'
                 margin='normal'
@@ -165,8 +165,8 @@ class SellPage extends Component {
                 onChange={this.handleChange}
                 errorMessages={[
                   'Please enter a price in credits',
+                  'Please enter a Integer as the price',
                   'The minimum allowed price is 0',
-                  'Please enter a Integer as the price'
                 ]}
                 helperText={this.state.error}
               />
@@ -188,13 +188,13 @@ class SellPage extends Component {
                 onChange={this.handleChange}
                 validators={[
                   'required',
-                  'minNumber:1',
                   'matchRegexp:^[0-9]+$', 
+                  'minNumber:1',
                 ]}
                 errorMessages={[
                   'Please enter a inventory',
+                  'Please enter a Integer',
                   'There must be at least 1 image in inventory',
-                  'Please enter a Integer'
                 ]}
                 helperText={this.state.error}
               />
