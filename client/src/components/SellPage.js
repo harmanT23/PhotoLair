@@ -16,8 +16,6 @@ import {
 } from 'react-material-ui-form-validator';
 
 import * as actions from '../actions';
-import { isNumber }  from '../utilities/isNumber';
-
 
 const useStyles = (theme) => ({
   paper: {
@@ -61,26 +59,11 @@ class SellPage extends Component {
     error: '',
   }
 
-  componentDidMount() {
-    //Ensure value is greater than or equal to zero
-    ValidatorForm.addValidationRule('greaterThanEqZero', (value) => {
-      if (!isNumber(value) && parseInt(value, 10) < 0) {
-        return false;
-      }
-      return true;
-    });
-  }
-
-  componentWillUnmount() {
-    // Remove validation checks when component unmounted
-    ValidatorForm.removeValidationRule('greaterThanEqZero');
-  }
-
   handleChange = (e) => {
     this.setState({
       ...this.state,
+      [e.target.name]: e.target.value,
       error: '',
-      [e.target.name]: e.target.value
     });
   };
 
@@ -99,13 +82,18 @@ class SellPage extends Component {
     formData.append('image', this.state.image);
     formData.append('user', this.props.userData.id);
 
-    await axiosInstance.post('/images/', formData).catch((err) => {
-       alert(err.msg);
+    const res = await axiosInstance.post('/images/', formData).catch(() => {
+       alert(
+         'Unable to upload image. One or more of the fields ' +
+         'Were filled out incorrectly. Please try again.'
+       )
     });
 
-    this.props.history.push({
-      pathname: '/'
-    });
+    if (res) {
+        this.props.history.push({
+        pathname: '/'
+      });
+    }
   }
 
  render() {
@@ -141,19 +129,17 @@ class SellPage extends Component {
               xs={12}
             >
               <TextValidator
+                validators={['required']}
                 variant='outlined'
                 margin='normal'
                 fullWidth
                 id='title'
-                label='title'
+                label='Title'
                 name='title'
                 placeholder='Enter title for your image i.e. Scenic Views'
-                autoFocus
                 value={this.state.title}
                 onChange={this.handleChange}
-                validators={['required']}
                 errorMessages={['Please enter a title']}
-                error={this.state.error ? true : false}
                 helperText={this.state.error}
               />
             </Grid>
@@ -162,19 +148,26 @@ class SellPage extends Component {
               xs={12}
             >
               <TextValidator
+                validators={[
+                  'required', 
+                  'minNumber:0',
+                  'matchRegexp:^[0-9]+$'
+                ]}
                 variant='outlined'
                 margin='normal'
                 fullWidth
                 id='price'
-                label='price'
+                label='Price'
                 name='price'
                 placeholder='Enter price in credits (a positive number) i.e. 2'
                 autoFocus
                 value={this.state.price}
                 onChange={this.handleChange}
-                validators={['required', 'greaterThanEqZero']}
-                errorMessages={['Please enter a price in credits']}
-                error={this.state.error ? true : false}
+                errorMessages={[
+                  'Please enter a price in credits',
+                  'The minimum allowed price is 0',
+                  'Please enter a Integer as the price'
+                ]}
                 helperText={this.state.error}
               />
             </Grid>
@@ -187,15 +180,22 @@ class SellPage extends Component {
                 margin='normal'
                 fullWidth
                 id='inventory'
-                label='inventory'
+                label='Inventory'
                 name='inventory'
-                placeholder='Enter inventory (a positive number) i.e. 5'
+                placeholder='Enter inventory as a positive integer (i.e. 5)'
                 autoFocus
                 value={this.state.inventory}
                 onChange={this.handleChange}
-                validators={['required', 'greaterThanEqZero']}
-                errorMessages={['Please enter a inventory']}
-                error={this.state.error ? true : false}
+                validators={[
+                  'required',
+                  'minNumber:1',
+                  'matchRegexp:^[0-9]+$', 
+                ]}
+                errorMessages={[
+                  'Please enter a inventory',
+                  'There must be at least 1 image in inventory',
+                  'Please enter a Integer'
+                ]}
                 helperText={this.state.error}
               />
             </Grid>

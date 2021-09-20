@@ -110,7 +110,7 @@ class ImageTestCase(TestCase):
         """
         Try to upload an image without a user.
         """
-        with self.assertRaises(IntegrityError):
+        with self.assertRaises(AttributeError):
             img_choice = 'sunsets.jpeg'
             image_file = self._get_image_io_stream(img_choice)
             image_name = img_choice.split('.')[0]

@@ -1,3 +1,4 @@
+import os
 import requests
 import core.settings as app_settings
 from tempfile import NamedTemporaryFile
@@ -88,9 +89,7 @@ class ImageDetailView(APIView):
             return FileResponse(tempFile, as_attachment=True)
 
         else:
-            file_path = (
-                app_settings.MEDIA_ROOT + image.image.url.split('/mediafiles')[-1]
-            )
+            file_path = os.path.join(app_settings.MEDIA_ROOT, image.image.name)
             image_file = open(file_path, 'rb')
             return FileResponse(image_file, as_attachment=True)
             
