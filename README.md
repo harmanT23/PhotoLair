@@ -174,8 +174,7 @@ title, price and inventory as well as the option to replace the image itself
 - Transaction logs to record transactions made by a user. Use these
 logs to notify a user when they attempt to buy the same image again or to
 provide them insights about their recent purchase trends.
-- Image tags to allow users to browse images matching certain search
-criteria.
+- Image tags to allow users to browse images matching certain tags.
 - Search and filters to allow users to search by keywords or filter
 images by various parameters (i.e. location, date, author, etc).
 
