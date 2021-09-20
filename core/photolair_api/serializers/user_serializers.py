@@ -22,7 +22,7 @@ class RegisterUserSerializer(serializers.ModelSerializer):
     
     def create(self, validated_data):
         """
-        Create a new user instance, where password is automatically hashed by
+        Create a new user instance where password is automatically hashed by
         Django via set_password call and stored as hashed value.
         """
         password = validated_data.pop('password', None)
@@ -35,8 +35,8 @@ class RegisterUserSerializer(serializers.ModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
     """
-    Serializer for user model provides user details about user such as id,
-    and account balance.
+    Serializer for user model used to fetch existing user's details and 
+    update their profile
     """
     class Meta:
         model = User

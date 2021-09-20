@@ -7,11 +7,16 @@ from rest_framework.response import Response
 
 class BlackListTokenView(APIView):
     """
-    Used to blacklist refresh tokens after a user logs out.
+    Blacklist Token Endpoint
+    - POST: Blacklist the user's refresh token 
     """
     permission_classes = [AllowAny,]
 
     def post(self, request):
+        """
+        Blacklist the given refresh token. Also invalidated the associated
+        access token.
+        """
         try:
             refresh_token = request.data['refresh_token']
             token = RefreshToken(refresh_token)

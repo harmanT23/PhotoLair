@@ -18,19 +18,20 @@ def buy_image(buy_user, image_id):
     """
     Performs action of purchasing image specified by image_id for 
     user defined by buy_user_id. Validation checks are done to ensure
-    user has enough funds and that the image is still in stock.
+    user has enough funds and that the image is still in stock. If validation
+    succeeds the image is returned otherwise a HTTP error is raised.
     """
 
     image = get_object_or_404(Image, pk=image_id)
             
-    if image.inventory == 0:
+    if image.inventory == 0: # If sold out, remove image and notify client
         _remove_sold_out_image(image)
         raise APIException(
             'Image is sold out.', 
             code=status.HTTP_403_FORBIDDEN
         )
         
-    if buy_user.credits < image.price:
+    if buy_user.credits < image.price: # If insufficeint funds, notify client
         raise APIException(
             'User does not have enough credits.', 
             code=status.HTTP_402_PAYMENT_REQUIRED

@@ -4,7 +4,7 @@ from storages.backends.s3boto3 import S3Boto3Storage
 
 class PublicMediaStorage(S3Boto3Storage):
     """
-    Defines settings for storage of public media on S3
+    Settings for storage of media on public s3 bucket
     """
     location = 'media'
     default_acl = 'public-read'

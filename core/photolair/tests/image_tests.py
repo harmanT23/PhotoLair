@@ -35,15 +35,16 @@ class ImageTestCase(TestCase):
 
     def _get_image_io_stream(self, image_name):
         """
-        First gets absolute path of the image, load its into a form
-        django can upload (i.e. byte stream)
+        Loads and and returns the specified image from memory. 
+        Note that img_choice can be changed to any image in the ./test_images
+        folder
         """
-        img_path = self._get_image_path(image_name)
-
-        image_file = Pil_Image.open(img_path)
         img_io = BytesIO()
-        image_file.save(img_io, format='jpeg')
 
+        img_path = self._get_image_path(image_name)
+        image_file = Pil_Image.open(img_path)
+
+        image_file.save(img_io, format='jpeg')
         return File(img_io, name=image_name)
 
 
@@ -55,17 +56,14 @@ class ImageTestCase(TestCase):
         password = 'testpass123'
 
         User.objects.create_user(
-          username=username,
-          password=password
+            username=username,
+            password=password
         )
     
 
     def test_create_image(self):
         """
-        Creates an image instance. 
-
-        img_choice can be changed according to the full names of 
-        images in the ./test_images folder.
+        Creates an image instance
         """
         # Open an image from the test folder
         img_choice = 'sunsets.jpeg'
@@ -108,7 +106,7 @@ class ImageTestCase(TestCase):
 
     def test_image_no_user(self):
         """
-        Try to upload an image without a user.
+        Try to upload an image without a user and catch attribute error
         """
         with self.assertRaises(AttributeError):
             img_choice = 'sunsets.jpeg'
@@ -117,7 +115,7 @@ class ImageTestCase(TestCase):
             inventory = 5
             price = 5
 
-            new_image = Image.objects.create(
+            Image.objects.create(
                 image_name=image_name,
                 image=image_file,
                 inventory=inventory,
@@ -127,17 +125,18 @@ class ImageTestCase(TestCase):
   
     def test_image_non_integer_price(self):
         """
-        Create an image instance with non-integer price
+        Create an image instance with non-integer price and catch value error
         """ 
         with self.assertRaises(ValueError):
             img_choice = 'sunsets.jpeg'
             image_file = self._get_image_io_stream(img_choice)
+
             image_name = img_choice.split('.')[0]
             inventory = 5
             price = 'abc'
             new_user = User.objects.get(username='harjiggly')
 
-            new_image = Image.objects.create(
+            Image.objects.create(
                 user=new_user,
                 image_name=image_name,
                 image=image_file,
@@ -148,17 +147,19 @@ class ImageTestCase(TestCase):
 
     def test_image_non_integer_inventory(self):
         """
-        Create an image instance with non-integer inventory
+        Create an image instance with non-integer inventory and catch value 
+        error
         """ 
         with self.assertRaises(ValueError):
             img_choice = 'sunsets.jpeg'
             image_file = self._get_image_io_stream(img_choice)
+
             image_name = img_choice.split('.')[0]
             inventory = 'abc'
             price = 10
             new_user = User.objects.get(username='harjiggly')
 
-            new_image = Image.objects.create(
+            Image.objects.create(
                 user=new_user,
                 image_name=image_name,
                 image=image_file,
@@ -169,42 +170,45 @@ class ImageTestCase(TestCase):
 
     def test_image_negative_integer_price(self):
         """
-        Create an image instance with non-integer price
+        Create an image instance with non-integer price and catch integrity
+        error
         """ 
         with self.assertRaises(IntegrityError):
-          img_choice = 'sunsets.jpeg'
-          image_file = self._get_image_io_stream(img_choice)
-          image_name = img_choice.split('.')[0]
-          inventory = 5
-          price = -10
-          new_user = User.objects.get(username='harjiggly')
+            img_choice = 'sunsets.jpeg'
+            image_file = self._get_image_io_stream(img_choice)
 
-          new_image = Image.objects.create(
-              user=new_user,
-              image_name=image_name,
-              image=image_file,
-              inventory=inventory,
-              price=price,
-          )
+            image_name = img_choice.split('.')[0]
+            inventory = 5
+            price = -10
+            new_user = User.objects.get(username='harjiggly')
+
+            Image.objects.create(
+                user=new_user,
+                image_name=image_name,
+                image=image_file,
+                inventory=inventory,
+                price=price,
+            )
 
 
     def test_image_negative_integer_inventory(self):
         """
-        Create an image instance with non-integer inventory
+        Create an image instance with non-integer inventory and catch integrity
+        error
         """ 
         with self.assertRaises(IntegrityError):
-          img_choice = 'sunsets.jpeg'
-          image_file = self._get_image_io_stream(img_choice)
-          image_name = img_choice.split('.')[0]
-          inventory = -5
-          price = 10
-          new_user = User.objects.get(username='harjiggly')
+            img_choice = 'sunsets.jpeg'
+            image_file = self._get_image_io_stream(img_choice)
+            image_name = img_choice.split('.')[0]
+            inventory = -5
+            price = 10
+            new_user = User.objects.get(username='harjiggly')
 
-          new_image = Image.objects.create(
-              user=new_user,
-              image_name=image_name,
-              image=image_file,
-              inventory=inventory,
-              price=price,
-          )
+            Image.objects.create(
+                user=new_user,
+                image_name=image_name,
+                image=image_file,
+                inventory=inventory,
+                price=price,
+            )
        

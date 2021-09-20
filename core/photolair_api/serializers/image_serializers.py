@@ -33,7 +33,7 @@ class ImageSerializer(serializers.ModelSerializer):
 
 class ImageUpdateSerialier(serializers.ModelSerializer):
     """
-    Serializer for image model used to update image and image details 
+    Serializer for image model used to update detailed of an existing image
     """
     class Meta:
         model = Image

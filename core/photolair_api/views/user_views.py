@@ -29,7 +29,7 @@ class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
     User Detail Endpoint
     - GET: Get a user by id
     - PUT/PATCH: Update a user by id
-    - DELETE: Delete a user
+    - DELETE: Delete a user by id
     """
     queryset = User.objects.all()
     serializer_class = UserSerializer
@@ -37,8 +37,9 @@ class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
 
     def get_object(self, queryset=None, **kwargs):
         """
-        Get the user object for the request user.
-        If request user does not match url. Raise exception.
+        Get the user instace for specified by the authenticated user.
+        If authenticated user does not math requested user raises HTTP
+        error.
         """
         user_id = self.kwargs.get('user_id')
         if self.request.user.id != user_id:

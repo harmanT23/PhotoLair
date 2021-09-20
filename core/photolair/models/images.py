@@ -9,14 +9,14 @@ from ..utilities import upload_image_path
 
 class Image(models.Model):
     """
-    Defines model for the images a user uploads.
+    Defines the image model for the application. 
     """
     id = models.UUIDField(
-      _('ID'),
-      primary_key=True, 
-      default=uuid.uuid4, 
-      editable=False,
-      help_text=_('Image ID is a uuid.'),
+        _('ID'),
+        primary_key=True, 
+        default=uuid.uuid4, 
+        editable=False,
+        help_text=_('Image ID is a uuid.'),
     )
 
     user = models.ForeignKey(
@@ -31,7 +31,7 @@ class Image(models.Model):
         max_length=100,
         validators=[validate_is_profane],
         blank=False,
-        help_text=_('Name of image specified by user.'),
+        help_text=_('Name of image specified by user. Max 100 characters.'),
     )
 
     image = models.ImageField(

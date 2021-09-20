@@ -11,8 +11,8 @@ class UserTestCase(TestCase):
     checking.
     
     We leave out test cases involving passwords as Django comes pre-built 
-    with password validators. Look at core/core/settings.py at the 
-    AUTH_PASSWORD_VALIDATORS settings for more information.
+    with password validators (view AUTH_PASSWORD_VALIDATORS 
+    in core/core/settings.py)
     """
     
     def test_create_user(self):
@@ -45,7 +45,7 @@ class UserTestCase(TestCase):
 
     def test_user_no_username(self):
         """
-        Create a user without a username
+        Create a user without a username and catch type error
         """
         with self.assertRaises(TypeError):
             email = 'harmanjiggly@jiggly.ca'
@@ -68,7 +68,7 @@ class UserTestCase(TestCase):
 
     def test_user_duplicate_username(self):
         """
-        Attempt to make user without username
+        Attempt to make user without username and catch integrity error
         """
         with self.assertRaises(IntegrityError):
             username = 'harmanjiggly'

@@ -7,12 +7,12 @@ class IsAuthenticatedAndOwner(BasePermission):
     '''
 
     message = (
-      'Editing/Viewing a user\'s profile is restricted to the original user'
+        'A user can only editing or view their own profile'
     )
 
     def has_permission(self, request, view):
         """
-        Only authenticated users have permission to view a user profile
+        Only authenticated users can access this endpoint
         """
         if request.user and request.user.is_authenticated:
             return True

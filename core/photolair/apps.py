@@ -7,6 +7,6 @@ class PhotolairConfig(AppConfig):
 
     def ready(self):
         """
-        Register signals for application
+        Register signals for photolair app
         """
         from . import signals
