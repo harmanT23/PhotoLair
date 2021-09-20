@@ -224,7 +224,12 @@ class Header extends Component {
           aria-label='add'
         >
         <Link
-          to='/sell'
+          to= {{
+            pathname:'/sell',
+            state: {
+              userData: userData
+             }
+          }}
           className={classes.rightSideButtons}
         >
           <Button

@@ -104,12 +104,9 @@ class RegisterPage extends Component {
             });
           }
         });
-      } else {
-        this.setState({
-          error: 'This username is already taken.'
-        });
-        alert(this.props.error);
-      }
+      } 
+    }).catch((err) => {
+      alert('This username is already taken.');
     });
   };
 

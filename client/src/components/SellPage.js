@@ -73,14 +73,12 @@ class SellPage extends Component {
   };
 
   handleSubmit = async () => {
-    this.props.fetchUser();
-
     const formData = new FormData();
     formData.append('image_name', this.state.title);
     formData.append('price', this.state.price);
     formData.append('inventory', this.state.inventory);
     formData.append('image', this.state.image);
-    formData.append('user', this.props.userData.id);
+    formData.append('user', this.props.location.state.userData.id);
 
     const res = await axiosInstance.post('/images/', formData).catch(() => {
        alert(
@@ -232,12 +230,8 @@ class SellPage extends Component {
  }
 }
 
-function mapStateToProps({ userData }) {
-  return { userData };
-}
-
 export default compose(
   withStyles(useStyles), 
   withRouter, 
-  connect(mapStateToProps, actions)
+  connect(null, actions)
 )(SellPage);

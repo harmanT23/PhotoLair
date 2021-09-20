@@ -23,12 +23,12 @@ axiosInstance.interceptors.response.use(
 
   async function (error) {
     const originalRequest = error.config;
-
     // Handle server failure
     if (typeof error.response === 'undefined') {
       alert(
-        'A server/network error occurred.'
+        'Timeout. A server or network error occurred.'
       );
+      window.location.href = '/';
       return Promise.reject(error);
     }
 
