@@ -97,8 +97,8 @@ placed in the projects ```core/core``` folder.
    > - AWS_STORAGE_BUCKET_NAME=<s3_bucket_name>
 
 ### Getting Started
-In order to run the backend and/or the frontend locally follow the instructions 
-below.
+In order to run the application locally follow the instructions 
+below:
 
 - Begin by cloning the repository 
 ```git clone https://github.com/harmanT23/PhotoLair.git```
