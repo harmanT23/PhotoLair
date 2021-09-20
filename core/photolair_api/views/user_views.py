@@ -17,7 +17,7 @@ User = get_user_model()
 class UserCreateView(generics.CreateAPIView):
     """
     User Create Endpoint
-    - POST: Registers a new user
+    - POST: Registers a new user given username and password
     """
     queryset = User.objects.all()
     serializer_class = RegisterUserSerializer

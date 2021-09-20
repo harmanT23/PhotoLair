@@ -14,8 +14,7 @@ class BlackListTokenView(APIView):
 
     def post(self, request):
         """
-        Blacklist the given refresh token. Also invalidated the associated
-        access token.
+        Blacklist the given refresh token.
         """
         try:
             refresh_token = request.data['refresh_token']

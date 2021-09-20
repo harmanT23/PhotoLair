@@ -47,9 +47,9 @@ class ImageListView(generics.ListCreateAPIView):
 class ImageDetailView(APIView):
     """
     Image Detail Endpoint
-    - GET: Download image specified by id for authenticated user 
-      and transfer funds
-    - PATCH: Update image details specified by id
+    - GET: Get image specified by id as a blob for authenticated user, 
+      check if user can afford image and in stock, and perform transaction.
+    - PATCH: Update image details for image specified by id
     - DELETE: Delete the image specified by id
 
     Note: Updating and deleting an image can only be done by the original
@@ -58,7 +58,8 @@ class ImageDetailView(APIView):
 
     def get_permissions(self):
         """
-        Any user can request to download an image but only users that own the associated image can edit/delete it.
+        Any user can request to download an image but only users that own 
+        the associated image can edit/delete it.
         """
         if self.request.method == 'GET':
             self.permission_classes = [IsAuthenticated]
