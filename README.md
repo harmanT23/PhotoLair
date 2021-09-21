@@ -14,6 +14,9 @@ can view the available images on the marketplace. For authentication the
 application uses JSON Web Tokens (JWT) for authentication.
 
 This project is currently hosted at: https://photolair.herokuapp.com/
+   > Note: Sometimes it may take a few minutes for the frontend to display
+     content. This happens when a new backend instance has to be spun up
+     following a period of dormancy. 
 
 ## Screenshots 
 ![Homepage](https://imgur.com/DTNSr5b.jpeg)
