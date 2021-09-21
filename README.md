@@ -66,12 +66,9 @@ datatypes as well as any services needed to support the endpoints.
 ### Prerequisites
 To run this application you'll need:
 - Python 3.9.7 or higher
-- NPM 7.21.0 or higher
+- NPM 7.21.0 or higher (update by using command ```npm i -g npm```)
 - Node.js & npm installed 
 - A local installation of [PostgreSQL](https://www.postgresql.org/download/)
-- A PostgreSQL database instance titled ```photolair``` or another database 
-name can be chosen by modifying the database settings in 
-```core/core/settings.py```
    > ### Note
    >
    > If you have brew, install PostgreSQL with the following steps:
@@ -79,10 +76,20 @@ name can be chosen by modifying the database settings in
    > -  `brew install postgresql` to install PostgreSQL
    > -  `brew services start postgresql` to start the PostgreSQL service 
    (stop it with `brew services stop PostgreSQL`)
+- A PostgreSQL database titled ```photolair``` with ```postgres``` as the user. 
+If you prefer to use a different database name or user then please modify
+the database settings in ```core/core/settings.py```. 
+**Instructions for setting up the database using the default configuration
+are as follows on Mac OS**:
+   > - ```psql postgres```
+   > - ```CREATE ROLE postgres WITH LOGIN;```
+   > - ```CREATE DATABASE photolair;```
+   > - ```\q```
+
 
 #### [Optional] Using AWS S3 Bucket for Image Repository
-By default the Photolair app will work right out the box and use the local
-file storage to implement the image repository. If the user prefers, the app 
+By default the **Photolair app will work right out the box and use local
+file storage** to implement the image repository. If the user prefers, the app 
 also supports connecting to an S3 bucket to store the image repo. To do so
 follow the steps below:
 - Create an AWS account
@@ -105,7 +112,6 @@ below:
 
 
 #### Start Django Backend
-
 - Install virtualenv: ```pip install virtualenv```
 - Change directory to the project folder: ```cd PhotoLair```
 - Create a virtual environment: ```virtualenv venv```
@@ -139,8 +145,6 @@ Complete API testing of all the endpoints are provided in the postman collection
 Instruction for importing a postman collection are available [here](https://learning.postman.com/docs/getting-started/importing-and-exporting-data/#importing-data-into-postman)
 ## PhotoLair API
 The application provides an API for authentication, user accounts and images.
-The following endpoints are currently implemented:
-
 ### Authentication Endpoints
 - ```POST /api/token/``` - Takes the username and password of a user then 
 returns an access and refresh JSON web token pair to prove the authentication 
