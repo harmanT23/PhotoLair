@@ -51,11 +51,7 @@ class ImageDetailView(APIView):
       check if user can afford image and in stock, and perform transaction.
     - PATCH: Update image details for image specified by id
     - DELETE: Delete the image specified by id
-
-    Note: Updating and deleting an image can only be done by the original
-    author of the image.
     """
-
     def get_permissions(self):
         """
         Any user can request to download an image but only users that own 
@@ -67,17 +63,18 @@ class ImageDetailView(APIView):
             self.permission_classes = [IsAuthenticatedAndImageOwner] 
         return super(ImageDetailView, self).get_permissions()
     
+
     def _download_image_send_blob(self, image):
         """
-        Behaviour is dependent on whether backend is using S3. 
+        Returns specified image as a blob via an http response. The behaviour
+        of this function is dependent on whether the backend is using S3. 
 
-        With S3: Downloads an image from S3 url, save it to a temp file 
-        and send the image as a blob in the http response.
+        With S3: Downloads an image from S3 url, saves it to a temp file 
+        and sends the image as a blob in the http response.
 
-        Without S3: simply read file from local storage, encode it to base 64
-        and return the image as a blob in the http response. 
+        Without S3: simply read file from local storage, and return the image 
+        as a blob in the http response. 
         """
-        
         if app_settings.AWS_S3:
             tempFile = NamedTemporaryFile(mode='w+b', suffix='jpeg')
             res = requests.get(image.image.url, stream=True)
@@ -94,7 +91,11 @@ class ImageDetailView(APIView):
             return FileResponse(tempFile, as_attachment=True)
 
         else:
-            file_path = os.path.join(app_settings.MEDIA_ROOT, image.image.name)
+            file_path = os.path.join(
+                app_settings.MEDIA_ROOT, 
+                image.image.name
+            )
+
             image_file = open(file_path, 'rb')
             return FileResponse(image_file, as_attachment=True)
             
@@ -108,9 +109,10 @@ class ImageDetailView(APIView):
         image = buy_image(request.user, image_id)
         return self._download_image_send_blob(image)
 
+
     def patch(self, request, image_id, format=None):
         """
-        Update details of image specified by id such as it title, price 
+        Update details of image specified by id such as its title, price 
         and inventory
         """
         image = get_object_or_404(Image, pk=image_id)
@@ -120,6 +122,7 @@ class ImageDetailView(APIView):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
     def delete(self, request, image_id, format=None):
         """

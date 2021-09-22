@@ -8,7 +8,10 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardActions from '@material-ui/core/CardActions';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+
 
 import * as actions from '../actions';
 import BuyAndDownloadImage from '../services/BuyAndDownloadImage';
@@ -110,7 +113,8 @@ class ImageGrid extends Component {
                  </Typography>
                  <BuyAndDownloadImage 
                   imageID={image.id}
-                  image_name={image.image_name} 
+                  image_name={image.image_name}
+                  sellUserID={image.user.id} 
                  />
                </CardActions>
              </div>
@@ -119,7 +123,29 @@ class ImageGrid extends Component {
         </div>
        ));
     } else {
-      return;
+        return (
+        <Grid
+          container
+          spacing={0}
+          direction="column"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Grid item xs={10}>
+            <Paper>
+              <Typography 
+                variant="h5" 
+                align="left"
+                paragraph
+              >
+                Either no images are available in the repository
+                or the backend is still in the process of serving them.
+                Add pictures to the repository by clicking Sell!
+              </Typography>
+            </Paper>
+          </Grid>   
+        </Grid> 
+      );
     }
   }
 

@@ -10,7 +10,7 @@ By default, all new users start with 50 credits which can immediately be used
 to purchase images on the marketplace. User's gain credits on the marketplace
 when their images are sold. Once an image is sold out it is removed from the 
 marketplace. An account is required to purchase and sell images, though anyone 
-can view the available images on the marketplace. For authentication the 
+can view the available images on the marketplace. For authentication, the 
 application uses JSON Web Tokens (JWT) for authentication.
 
 This project is currently hosted at: https://photolair.herokuapp.com/
@@ -61,8 +61,8 @@ Regarding the Django apps developed for this project, we have **photolair** and
 **photolair_api** that each provide a specific utility: 
 - **photolair** app provides the models for the application along with any 
 special helpers functions and Django Signals needed to operate on the models.
-- **photolair_api** app utilizes the Django Rest Framework to defines the views 
-needed for the endpoints, serializers to convert between JSON and model 
+- **photolair_api** app utilizes the Django Rest Framework to implement the 
+views needed for the endpoints, serializers to convert between JSON and model 
 datatypes as well as any services needed to support the endpoints.
 
 ## Development
@@ -70,7 +70,7 @@ datatypes as well as any services needed to support the endpoints.
 To run this application you'll need:
 - Python 3.9.7 or higher
 - NPM 7.21.0 or higher (update by using command ```npm i -g npm```)
-- Node.js & npm installed 
+- Node.js 14.17.6 or higher
 - A local installation of [PostgreSQL](https://www.postgresql.org/download/)
    > ### Note
    >
@@ -80,20 +80,20 @@ To run this application you'll need:
    > -  `brew services start postgresql` to start the PostgreSQL service 
    (stop it with `brew services stop PostgreSQL`)
 - A PostgreSQL database titled ```photolair``` with ```postgres``` as the user. 
-If you prefer to use a different database name or user then please modify
-the database settings in ```core/core/settings.py```. 
-**Instructions for setting up the database using the default configuration
-are as follows on Mac OS**:
+**Instructions for setting up the database are as follows on Mac OS**:
    > - ```psql postgres```
    > - ```CREATE ROLE postgres WITH LOGIN;```
    > - ```CREATE DATABASE photolair;```
    > - ```\q```
 
+   > ### Note
+   > If you prefer to use a different database name or user then please modify the database settings accordingly in ```core/core/settings.py```. 
+
 
 #### [Optional] Using AWS S3 Bucket for Image Repository
 By default the **Photolair app will work right out the box and use local
 file storage** to implement the image repository. If the user prefers, the app 
-also supports connecting to an S3 bucket to store the image repo. To do so
+also supports connecting to an S3 bucket to store the image repo. To utilize S3
 follow the steps below:
 - Create an AWS account
 - Create a [public S3 bucket](https://havecamerawilltravel.com/photographer/how-allow-public-access-amazon-bucket/) 
@@ -135,7 +135,7 @@ Testing is split into two parts:
 - Testing API
 
 ### Testing Models
-Detailed units tests for the models are available ```./core/photolair/tests```
+Detailed units tests for the models are available in ```./core/photolair/tests```
 
 To run all the unit tests at once simply run the following command in 
 the ```./core``` folder
@@ -143,7 +143,8 @@ the ```./core``` folder
  ./manage.py test
 ```
 ### Testing API
-Complete API testing of all the endpoints are provided in the postman collection available in ```./core/postman_collection```
+Complete API testing of all the endpoints are provided in the postman 
+collection available in ```./core/postman_collection```
 
 Instruction for importing a postman collection are available [here](https://learning.postman.com/docs/getting-started/importing-and-exporting-data/#importing-data-into-postman)
 ## PhotoLair API

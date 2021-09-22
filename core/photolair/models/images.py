@@ -9,7 +9,7 @@ from ..utilities import upload_image_path
 
 class Image(models.Model):
     """
-    Defines the image model for the application. 
+    Image model for the application. 
     """
     id = models.UUIDField(
         _('ID'),

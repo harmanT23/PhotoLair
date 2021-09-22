@@ -5,8 +5,8 @@ from photolair.models import Image
 
 class ImageSerializer(serializers.ModelSerializer):
     """
-    Serializer for image model used for uploading/downloading images 
-    and handling transcations 
+    Serializer for image model used for displaying/uploading/downloading images 
+    and handling transcations. 
     """
     class Meta:
         model = Image
@@ -22,10 +22,11 @@ class ImageSerializer(serializers.ModelSerializer):
     
     def to_representation(self, instance):
         """
-        Return only id of associated user
+        Return only id and username of associated user
         """
         response = super().to_representation(instance)
         response['user'] = { 
+            'id': instance.user.id,
             'username': instance.user.username,
         }
         return response
@@ -33,7 +34,7 @@ class ImageSerializer(serializers.ModelSerializer):
 
 class ImageUpdateSerialier(serializers.ModelSerializer):
     """
-    Serializer for image model used to update detailed of an existing image
+    Serializer for image model used to update details of an existing image
     """
     class Meta:
         model = Image

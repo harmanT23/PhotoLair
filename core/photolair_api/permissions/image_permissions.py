@@ -3,7 +3,8 @@ from rest_framework.permissions import BasePermission
 
 class IsAuthenticatedAndImageOwner(BasePermission):
     '''
-    An authenticated user can only view or edit their own image
+    Permission Setting: An authenticated user can only edit their own 
+    image.
     '''
 
     message = (
@@ -12,7 +13,7 @@ class IsAuthenticatedAndImageOwner(BasePermission):
 
     def has_permission(self, request, view):
         """
-        Only authenticated users can access this endpoint
+        Only authenticated users can access this endpoint.
         """
         if request.user and request.user.is_authenticated:
             return True

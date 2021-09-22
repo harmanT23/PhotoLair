@@ -36,7 +36,7 @@ class ImageTestCase(TestCase):
     def _get_image_io_stream(self, image_name):
         """
         Loads and and returns the specified image from memory. 
-        Note that img_choice can be changed to any image in the ./test_images
+        Note: img_choice can be changed to any image in the ./test_images
         folder
         """
         img_io = BytesIO()

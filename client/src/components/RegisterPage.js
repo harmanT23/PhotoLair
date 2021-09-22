@@ -149,7 +149,7 @@ class RegisterPage extends Component {
                   variant='outlined'
                   fullWidth
                   id='username'
-                  label='username'
+                  label='Username'
                   name='username'
                   value={this.state.username}
                   onChange={this.handleChange}
@@ -170,7 +170,7 @@ class RegisterPage extends Component {
                   variant='outlined'
                   fullWidth
                   id='password'
-                  label='password'
+                  label='Password'
                   name='password'
                   type={'password'}
                   value={this.state.password}
@@ -197,7 +197,12 @@ class RegisterPage extends Component {
               to='/login'
               variant='body2'
             >
+              <Typography 
+                component="h1" 
+                variant="h5"
+              >
               Already have an account? Login
+              </Typography>
             </Link>
           </ValidatorForm>
         </div>

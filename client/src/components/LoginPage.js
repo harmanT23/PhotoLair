@@ -136,7 +136,7 @@ class LoginPage extends Component {
                   margin='normal'
                   fullWidth
                   id='username'
-                  label='username'
+                  label='Username'
                   name='username'
                   autoFocus
                   value={this.state.username}
@@ -153,7 +153,7 @@ class LoginPage extends Component {
                   margin='normal'
                   fullWidth
                   id='password'
-                  label='password'
+                  label='Password'
                   name='password'
                   type='password'
                   autoFocus
@@ -179,7 +179,12 @@ class LoginPage extends Component {
               to='/register'
               variant='body2'
             >
+              <Typography 
+                component="h1" 
+                variant="h5"
+              >
               Don't have an account? Sign Up
+              </Typography>
             </Link>
           </ValidatorForm>
         </div>

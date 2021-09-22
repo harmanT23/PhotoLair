@@ -62,6 +62,15 @@ class BuyAndDownloadImage extends Component {
     }
   };
 
+  get_label(userData, sellUserID) {
+    if (!checkEmpty(userData) &&
+        userData.id === sellUserID) {
+      return 'Download';
+    } else {
+        return 'Buy';
+    }
+  }
+
   render() {
     const { classes } = this.props;
     return (
@@ -72,7 +81,7 @@ class BuyAndDownloadImage extends Component {
         className={classes.rightSideButtons} 
         onClick={this.handleClick}
       >
-        Buy
+        {this.get_label(this.props.userData, this.props.sellUserID)}
       </Button>
     );
   }

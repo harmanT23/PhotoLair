@@ -6,7 +6,7 @@ from ..models import Image
 @receiver(post_delete, sender=Image)
 def Image_postdelete(sender, instance, *args, **kwargs):
     """
-    Post delete signal to handle deleting an image that is out of stock
+    Post delete signal to handle deleting an image from memory.
     """ 
     try:
         instance.image.delete(save=False)

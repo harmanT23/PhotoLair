@@ -3,7 +3,8 @@ from rest_framework.permissions import BasePermission
 
 class IsAuthenticatedAndOwner(BasePermission):
     '''
-    An authenticated user can only view and edit their own profile
+    Permission Setting: An authenticated user can only view and edit their own 
+    profile
     '''
 
     message = (
